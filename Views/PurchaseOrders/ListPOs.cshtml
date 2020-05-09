@@ -1,0 +1,65 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListPOs";
+}
+<h1>Purchaseorders - All</h1>
+<div class="badge">
+    <a class="btn btn-sm btn-success" asp-controller="PurchaseOrders" asp-action="Create">Create new PO</a>
+    <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Accounting">Back to Accounting</a>
+
+
+
+    <table class="table table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseOrders[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseOrders[0].PONumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseOrders[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseOrders[0].POHours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseOrders[0].DateTimeApproved)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PurchaseOrders.OrderBy(i => i.PONumber))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PONumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.POHours)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTimeApproved)
+                    </td>
+
+
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="PurchaseOrders" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="PurchaseOrders" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="PurchaseOrders" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>	

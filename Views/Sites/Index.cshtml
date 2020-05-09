@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.Site>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfFloors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfFloors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteRole.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteStatus.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteType.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact1.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact2.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

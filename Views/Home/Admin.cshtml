@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin - Tools</h1>
+
+<h4>Companies</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Companies" asp-action="ListCompanies">List all Companies</a>
+    </li>
+</ul>
+
+
+<h4>People</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="ListPeople">List all People</a>
+    </li>
+</ul>
+
+<h4>Sites</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Sites" asp-action="ListSites">List all Sites</a>
+    </li>
+</ul>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Home" asp-action="Settings">To Settings Menu</a>
+    </li>
+</ul>

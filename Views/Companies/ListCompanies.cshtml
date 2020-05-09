@@ -1,0 +1,74 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{ViewData["Title"] = "ListCompanies";}
+
+    <div class="badge align-content-center">
+        <h1>Companies</h1>
+
+        <a class="btn btn-sm btn-success" asp-controller="Companies" asp-action="Create">Create new company</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Admin">Back to Admin</a>
+
+        <div>
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].CompanyName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].Country)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].CompanyRole)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].CompanyStatus)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Companies[0].CompanyType)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Companies.OrderBy(p => p.CompanyName))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyRole.CompanyRoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyStatus.CompanyStatusName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyType.CompanyTypeName)
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-success" asp-controller="Companies" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-sm btn-success" asp-controller="Companies" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-sm btn-danger" asp-controller="Companies" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
