@@ -1,12 +1,90 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PRONBS.Data.Migrations
+namespace PRONBS.Migrations
 {
-    public partial class UpToWLogsAdded : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyRole",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyRoleName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyRole", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyStatusName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyTypeName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyType", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "IncidentPriority",
                 columns: table => new
@@ -44,6 +122,19 @@ namespace PRONBS.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IncidentType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OfferStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OfferStatusName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OfferStatus", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,6 +260,151 @@ namespace PRONBS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Company",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyNumber = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true),
+                    StreetAddress = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    CompanyRoleId = table.Column<int>(nullable: true),
+                    CompanyStatusId = table.Column<int>(nullable: true),
+                    CompanyTypeId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Company_CompanyRole_CompanyRoleId",
+                        column: x => x.CompanyRoleId,
+                        principalTable: "CompanyRole",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Company_CompanyStatus_CompanyStatusId",
+                        column: x => x.CompanyStatusId,
+                        principalTable: "CompanyStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Company_CompanyType_CompanyTypeId",
+                        column: x => x.CompanyTypeId,
+                        principalTable: "CompanyType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
@@ -221,30 +457,6 @@ namespace PRONBS.Data.Migrations
                         name: "FK_Person_PersonType_PersonTypeId",
                         column: x => x.PersonTypeId,
                         principalTable: "PersonType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WLog",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WLNumber = table.Column<string>(nullable: true),
-                    Hours = table.Column<decimal>(nullable: false),
-                    DateTimeFrom = table.Column<DateTime>(nullable: false),
-                    DateTimeTo = table.Column<DateTime>(nullable: false),
-                    Subject = table.Column<string>(nullable: true),
-                    WLogStatusId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WLog", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WLog_WLogStatus_WLogStatusId",
-                        column: x => x.WLogStatusId,
-                        principalTable: "WLogStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -389,6 +601,140 @@ namespace PRONBS.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Offer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateTimeOffered = table.Column<DateTime>(nullable: true),
+                    OfferStatusId = table.Column<int>(nullable: true),
+                    PersonId = table.Column<int>(nullable: true),
+                    SiteId = table.Column<int>(nullable: true),
+                    IncidentId = table.Column<int>(nullable: true),
+                    DateTimeScheduledStart = table.Column<DateTime>(nullable: true),
+                    DateTimeScheduledEnd = table.Column<DateTime>(nullable: true),
+                    HoursOnSite = table.Column<double>(nullable: false),
+                    PricePerHour = table.Column<double>(nullable: false),
+                    KostHours = table.Column<double>(nullable: false),
+                    KostMtrl = table.Column<double>(nullable: false),
+                    Riskfaktor = table.Column<double>(nullable: false),
+                    TotalOfferAmount = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Offer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Offer_Incident_IncidentId",
+                        column: x => x.IncidentId,
+                        principalTable: "Incident",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Offer_OfferStatus_OfferStatusId",
+                        column: x => x.OfferStatusId,
+                        principalTable: "OfferStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Offer_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Offer_Site_SiteId",
+                        column: x => x.SiteId,
+                        principalTable: "Site",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WLog",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WLNumber = table.Column<string>(nullable: true),
+                    Hours = table.Column<decimal>(nullable: false),
+                    DateTimeFrom = table.Column<DateTime>(nullable: false),
+                    DateTimeTo = table.Column<DateTime>(nullable: false),
+                    Subject = table.Column<string>(nullable: true),
+                    WLogStatusId = table.Column<int>(nullable: true),
+                    IncidentId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WLog", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WLog_Incident_IncidentId",
+                        column: x => x.IncidentId,
+                        principalTable: "Incident",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WLog_WLogStatus_WLogStatusId",
+                        column: x => x.WLogStatusId,
+                        principalTable: "WLogStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company_CompanyRoleId",
+                table: "Company",
+                column: "CompanyRoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company_CompanyStatusId",
+                table: "Company",
+                column: "CompanyStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company_CompanyTypeId",
+                table: "Company",
+                column: "CompanyTypeId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Incident_IncidentPriorityId",
                 table: "Incident",
@@ -427,6 +773,26 @@ namespace PRONBS.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Incident_SiteId",
                 table: "Incident",
+                column: "SiteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_IncidentId",
+                table: "Offer",
+                column: "IncidentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_OfferStatusId",
+                table: "Offer",
+                column: "OfferStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_PersonId",
+                table: "Offer",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_SiteId",
+                table: "Offer",
                 column: "SiteId");
 
             migrationBuilder.CreateIndex(
@@ -485,6 +851,11 @@ namespace PRONBS.Data.Migrations
                 column: "SiteTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_WLog_IncidentId",
+                table: "WLog",
+                column: "IncidentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WLog_WLogStatusId",
                 table: "WLog",
                 column: "WLogStatusId");
@@ -493,10 +864,40 @@ namespace PRONBS.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Incident");
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Offer");
 
             migrationBuilder.DropTable(
                 name: "WLog");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "OfferStatus");
+
+            migrationBuilder.DropTable(
+                name: "Incident");
+
+            migrationBuilder.DropTable(
+                name: "WLogStatus");
 
             migrationBuilder.DropTable(
                 name: "IncidentPriority");
@@ -514,9 +915,6 @@ namespace PRONBS.Data.Migrations
                 name: "Site");
 
             migrationBuilder.DropTable(
-                name: "WLogStatus");
-
-            migrationBuilder.DropTable(
                 name: "Person");
 
             migrationBuilder.DropTable(
@@ -529,6 +927,9 @@ namespace PRONBS.Data.Migrations
                 name: "SiteType");
 
             migrationBuilder.DropTable(
+                name: "Company");
+
+            migrationBuilder.DropTable(
                 name: "PersonAccounts");
 
             migrationBuilder.DropTable(
@@ -539,6 +940,15 @@ namespace PRONBS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "PersonType");
+
+            migrationBuilder.DropTable(
+                name: "CompanyRole");
+
+            migrationBuilder.DropTable(
+                name: "CompanyStatus");
+
+            migrationBuilder.DropTable(
+                name: "CompanyType");
         }
     }
 }

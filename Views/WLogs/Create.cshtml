@@ -39,11 +39,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="WLogStatusId" class="control-label"></label>
-                <select asp-for="WLogStatusId" class ="form-control" asp-items="ViewBag.WLogStatusId"></select>
+                <select asp-for="WLogStatusId" class="form-control" asp-items="ViewBag.WLogStatusId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-sm btn-primary" />
-            </div>
+                <label asp-for="IncidentId" class="control-label"></label>
+                <select asp-for="IncidentId" class="form-control" asp-items="ViewBag.IncidentId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-sm btn-primary" />
+                </div>
         </form>
     </div>
 </div>
@@ -51,4 +55,3 @@
 <div>
     <a class="btn btn-sm btn-success" asp-controller="WLogs" asp-action="ListWLogs">Back to WLogs</a>
 </div>
-

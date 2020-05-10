@@ -1,0 +1,45 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListQuotationsAccepted";
+}
+    <div class="badge">
+        <h1>Quotations - Accepted</h1>
+        <h4>Total Quoted: @Model.Quotations.Sum(q => q.TotalOfferAmount) SEK</h4>
+        <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Create">Create new offer</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Quotations">Back to Quotations</a>
+
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].Site)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].Employee)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].DateTimeOffered)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].DateTimeScheduledStart)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].Incident.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].TotalOfferAmount)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].OfferStatus)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Quotations.OrderBy(q => q.DateTimeOffered))
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeScheduledStart)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @*<a class="btn btn-sm btn-danger" asp-controller="Offers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

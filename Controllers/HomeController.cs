@@ -28,6 +28,11 @@ namespace PRONBS.Controllers
             return View();
         }
 
+        public IActionResult Quotations()
+        {
+            return View();
+        }
+
         public IActionResult Admin()
         {
             return View();
@@ -39,6 +44,11 @@ namespace PRONBS.Controllers
         }
 
         public IActionResult Reporting()
+        {
+            return View();
+        }
+
+        public IActionResult Links()
         {
             return View();
         }

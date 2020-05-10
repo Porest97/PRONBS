@@ -24,6 +24,7 @@ namespace PRONBS.Controllers.ReportingControllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.WLog
+                .Include(w => w.Incident)
                 .Include(w => w.WLogStatus);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -35,6 +36,7 @@ namespace PRONBS.Controllers.ReportingControllers
             {
                 WLogs = _context.WLog
                 .Include(w => w.WLogStatus)
+                .Include(w => w.Incident)
                 .ToList()
             };
             return View(dataViewModel);
@@ -49,6 +51,7 @@ namespace PRONBS.Controllers.ReportingControllers
             }
 
             var wLog = await _context.WLog
+                .Include(w => w.Incident)                
                 .Include(w => w.WLogStatus)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (wLog == null)
@@ -62,7 +65,8 @@ namespace PRONBS.Controllers.ReportingControllers
         // GET: WLogs/Create
         public IActionResult Create()
         {
-            ViewData["WLogStatusId"] = new SelectList(_context.Set<WLogStatus>(), "Id", "WLogStatusName");
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber");
+            ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName");
             return View();
         }
 
@@ -71,7 +75,7 @@ namespace PRONBS.Controllers.ReportingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId")] WLog wLog)
+        public async Task<IActionResult> Create([Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId")] WLog wLog)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +83,8 @@ namespace PRONBS.Controllers.ReportingControllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ListWLogs));
             }
-            ViewData["WLogStatusId"] = new SelectList(_context.Set<WLogStatus>(), "Id", "WLogStatusName", wLog.WLogStatusId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }
 
@@ -96,7 +101,8 @@ namespace PRONBS.Controllers.ReportingControllers
             {
                 return NotFound();
             }
-            ViewData["WLogStatusId"] = new SelectList(_context.Set<WLogStatus>(), "Id", "WLogStatusName", wLog.WLogStatusId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }
 
@@ -105,7 +111,7 @@ namespace PRONBS.Controllers.ReportingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId")] WLog wLog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId")] WLog wLog)
         {
             if (id != wLog.Id)
             {
@@ -132,7 +138,8 @@ namespace PRONBS.Controllers.ReportingControllers
                 }
                 return RedirectToAction(nameof(ListWLogs));
             }
-            ViewData["WLogStatusId"] = new SelectList(_context.Set<WLogStatus>(), "Id", "WLogStatusName", wLog.WLogStatusId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }
 
@@ -145,6 +152,7 @@ namespace PRONBS.Controllers.ReportingControllers
             }
 
             var wLog = await _context.WLog
+                .Include(w => w.Incident)
                 .Include(w => w.WLogStatus)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (wLog == null)

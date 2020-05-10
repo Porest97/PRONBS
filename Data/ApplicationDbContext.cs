@@ -33,5 +33,8 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.SiteType> SiteType { get; set; }
         public DbSet<PRONBS.Models.DataModels.WLog> WLog { get; set; }
         public DbSet<PRONBS.Models.DataModels.WLogStatus> WLogStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Offer> Offer { get; set; }
+        public DbSet<PRONBS.Models.DataModels.NABLog> NABLog { get; set; }
+        public DbSet<PRONBS.Models.DataModels.NABLogStatus> NABLogStatus { get; set; }
     }
 }

@@ -4,6 +4,7 @@
 }
     <div class="badge">
         <h1>WLogs - ALL</h1>
+        <h4>Total Hours: @Model.WLogs.Sum(wl => wl.Hours)</h4>
         <a class="btn btn-sm btn-success" asp-controller="WLogs" asp-action="Create">Create new WLog</a>
         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Reporting">Back to Reporting</a>
 
@@ -12,12 +13,13 @@
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].Id)</th>
-                    <th>@Html.DisplayNameFor(model => model.WLogs[0].WLNumber)</th>                    
+                    <th>@Html.DisplayNameFor(model => model.WLogs[0].WLNumber)</th>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].DateTimeFrom)</th>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].DateTimeTo)</th>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].Hours)</th>
-                    <th>@Html.DisplayNameFor(model => model.WLogs[0].Subject)</th>                   
-                    <th>@Html.DisplayNameFor(model => model.WLogs[0].WLogStatus)</th>                    
+                    <th>@Html.DisplayNameFor(model => model.WLogs[0].Subject)</th>
+                    <th>@Html.DisplayNameFor(model => model.WLogs[0].WLogStatus)</th>
+                    <th>@Html.DisplayNameFor(model => model.WLogs[0].Incident)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,7 +33,8 @@
                         <td>@Html.DisplayFor(modelItem => item.DateTimeTo)</td>
                         <td>@Html.DisplayFor(modelItem => item.Hours)</td>
                         <td>@Html.DisplayFor(modelItem => item.Subject)</td>
-                        <td>@Html.DisplayFor(modelItem => item.WLogStatus.WLogStatusName)</td>                        
+                        <td>@Html.DisplayFor(modelItem => item.WLogStatus.WLogStatusName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
                         <td>
                             <a class="btn btn-sm btn-success" asp-controller="WLogs" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                             <a class="btn btn-sm btn-success" asp-controller="WLogs" asp-action="Details" asp-route-id="@item.Id">Details</a>

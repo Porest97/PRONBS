@@ -27,10 +27,17 @@ namespace PRONBS.Models.DataModels
         public string Subject { get; set; }
 
         //WLogStatus !
+        [Display(Name = "WL Status")]
         public int? WLogStatusId { get; set; }
         [Display(Name = "WL Status")]
         [ForeignKey("WLogStatusId")]
         public WLogStatus WLogStatus { get; set; }
+
+        [Display(Name = "Incident")]
+        public int? IncidentId { get; set; }
+        [Display(Name = "Incident")]
+        [ForeignKey("IncidentId")]
+        public Incident Incident { get; set; }
 
     }
 

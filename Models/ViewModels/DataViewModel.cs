@@ -10,13 +10,17 @@ namespace PRONBS.Models.ViewModels
     {
         //DATA Entities ! 
         
-        public List<Company> Companies { get; internal set; }
-        
+        public List<Company> Companies { get; internal set; }        
+
         public List<Incident> Incidents { get; internal set; }
-        
+
+        public List<NABLog> NABLogs { get; internal set; }
+
         public List<Person> People { get; internal set; }
 
         public List<PurchaseOrder> PurchaseOrders { get; internal set; }
+
+        public List<Offer> Quotations { get; internal set; }
 
         public List<Site> Sites { get; internal set; }             
 

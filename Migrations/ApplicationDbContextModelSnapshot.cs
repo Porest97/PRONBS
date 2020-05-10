@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
-namespace PRONBS.Data.Migrations
+namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200509012323_UpToWLogsAdded")]
-    partial class UpToWLogsAdded
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -438,6 +436,143 @@ namespace PRONBS.Data.Migrations
                     b.ToTable("IncidentType");
                 });
 
+            modelBuilder.Entity("PRONBS.Models.DataModels.NABLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTimeEnded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateTimeStarted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Hours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("IncidentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MtrCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("NABLogStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PriceHour")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("WLogId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IncidentId");
+
+                    b.HasIndex("NABLogStatusId");
+
+                    b.HasIndex("WLogId");
+
+                    b.ToTable("NABLog");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.NABLogStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NABLogStatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NABLogStatus");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("DateTimeOffered")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateTimeScheduledEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateTimeScheduledStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("HoursOnSite")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("IncidentId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("KostHours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("KostMtrl")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("OfferStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("PricePerHour")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Riskfaktor")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("SiteId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalOfferAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IncidentId");
+
+                    b.HasIndex("OfferStatusId");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("SiteId");
+
+                    b.ToTable("Offer");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.OfferStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("OfferStatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OfferStatus");
+                });
+
             modelBuilder.Entity("PRONBS.Models.DataModels.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -722,6 +857,9 @@ namespace PRONBS.Data.Migrations
                     b.Property<decimal>("Hours")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("IncidentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
@@ -732,6 +870,8 @@ namespace PRONBS.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IncidentId");
 
                     b.HasIndex("WLogStatusId");
 
@@ -854,6 +994,40 @@ namespace PRONBS.Data.Migrations
                         .HasForeignKey("SiteId");
                 });
 
+            modelBuilder.Entity("PRONBS.Models.DataModels.NABLog", b =>
+                {
+                    b.HasOne("PRONBS.Models.DataModels.Incident", "Incident")
+                        .WithMany()
+                        .HasForeignKey("IncidentId");
+
+                    b.HasOne("PRONBS.Models.DataModels.NABLogStatus", "NABLogStatus")
+                        .WithMany()
+                        .HasForeignKey("NABLogStatusId");
+
+                    b.HasOne("PRONBS.Models.DataModels.WLog", "WLog")
+                        .WithMany()
+                        .HasForeignKey("WLogId");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.Offer", b =>
+                {
+                    b.HasOne("PRONBS.Models.DataModels.Incident", "Incident")
+                        .WithMany()
+                        .HasForeignKey("IncidentId");
+
+                    b.HasOne("PRONBS.Models.DataModels.OfferStatus", "OfferStatus")
+                        .WithMany()
+                        .HasForeignKey("OfferStatusId");
+
+                    b.HasOne("PRONBS.Models.DataModels.Person", "Employee")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("PRONBS.Models.DataModels.Site", "Site")
+                        .WithMany()
+                        .HasForeignKey("SiteId");
+                });
+
             modelBuilder.Entity("PRONBS.Models.DataModels.Person", b =>
                 {
                     b.HasOne("PRONBS.Models.DataModels.Company", "Company")
@@ -906,6 +1080,10 @@ namespace PRONBS.Data.Migrations
 
             modelBuilder.Entity("PRONBS.Models.DataModels.WLog", b =>
                 {
+                    b.HasOne("PRONBS.Models.DataModels.Incident", "Incident")
+                        .WithMany()
+                        .HasForeignKey("IncidentId");
+
                     b.HasOne("PRONBS.Models.DataModels.WLogStatus", "WLogStatus")
                         .WithMany()
                         .HasForeignKey("WLogStatusId");

@@ -42,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriority.IncidentPriorityName))
+            @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriorityId))
             {
                 <tr>
                     <td>
