@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PRONBS.Models.DataModels;
+using PRONBS.LAB.Models.DataModels;
 
 namespace PRONBS.Data
 {
@@ -36,5 +37,10 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.Offer> Offer { get; set; }
         public DbSet<PRONBS.Models.DataModels.NABLog> NABLog { get; set; }
         public DbSet<PRONBS.Models.DataModels.NABLogStatus> NABLogStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Project> Project { get; set; }
+        public DbSet<PRONBS.Models.DataModels.ProjectStatus> ProjectStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.ProjectType> ProjectType { get; set; }
+        public DbSet<PRONBS.LAB.Models.DataModels.TestModel> TestModel { get; set; }
+        public DbSet<PRONBS.LAB.Models.DataModels.SubModel> SubModel { get; set; }
     }
 }

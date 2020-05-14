@@ -1,0 +1,116 @@
+﻿@model PRONBS.Models.DataModels.Project
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SiteId" class="control-label"></label>
+                <select asp-for="SiteId" class="form-control" asp-items="ViewBag.SiteId"></select>
+                <span asp-validation-for="SiteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonId" class="control-label"></label>
+                <select asp-for="PersonId" class="form-control" asp-items="ViewBag.PersonId"></select>
+                <span asp-validation-for="PersonId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonId1" class="control-label"></label>
+                <select asp-for="PersonId1" class="form-control" asp-items="ViewBag.PersonId1"></select>
+                <span asp-validation-for="PersonId1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExtraPeople" class="control-label"></label>
+                <input asp-for="ExtraPeople" class="form-control" />
+                <span asp-validation-for="ExtraPeople" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferId" class="control-label"></label>
+                <select asp-for="OfferId" class="form-control" asp-items="ViewBag.OfferId"></select>
+                <span asp-validation-for="OfferId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferId1" class="control-label"></label>
+                <select asp-for="OfferId1" class="form-control" asp-items="ViewBag.OfferId1"></select>
+                <span asp-validation-for="OfferId1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferId2" class="control-label"></label>
+                <select asp-for="OfferId2" class="form-control" asp-items="ViewBag.OfferId2"></select>
+                <span asp-validation-for="OfferId2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferId3" class="control-label"></label>
+                <select asp-for="OfferId3" class="form-control" asp-items="ViewBag.OfferId3"></select>
+                <span asp-validation-for="OfferId3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfferId4" class="control-label"></label>
+                <select asp-for="OfferId4" class="form-control" asp-items="ViewBag.OfferId4"></select>
+                <span asp-validation-for="OfferId4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDescription" class="control-label"></label>
+                <input asp-for="ProjectDescription" class="form-control" />
+                <span asp-validation-for="ProjectDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectStart" class="control-label"></label>
+                <input asp-for="ProjectStart" class="form-control" />
+                <span asp-validation-for="ProjectStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectEnd" class="control-label"></label>
+                <input asp-for="ProjectEnd" class="form-control" />
+                <span asp-validation-for="ProjectEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectTypeId" class="control-label"></label>
+                <select asp-for="ProjectTypeId" class="form-control" asp-items="ViewBag.ProjectTypeId"></select>
+                <span asp-validation-for="ProjectTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectStatusId" class="control-label"></label>
+                <select asp-for="ProjectStatusId" class="form-control" asp-items="ViewBag.ProjectStatusId"></select>
+                <span asp-validation-for="ProjectStatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectLog" class="control-label"></label>
+                <input asp-for="ProjectLog" class="form-control" />
+                <span asp-validation-for="ProjectLog" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalProjectCost" class="control-label"></label>
+                <input asp-for="TotalProjectCost" class="form-control" />
+                <span asp-validation-for="TotalProjectCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalHoursCost" class="control-label"></label>
+                <input asp-for="TotalHoursCost" class="form-control" />
+                <span asp-validation-for="TotalHoursCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalMtrCost" class="control-label"></label>
+                <input asp-for="TotalMtrCost" class="form-control" />
+                <span asp-validation-for="TotalMtrCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

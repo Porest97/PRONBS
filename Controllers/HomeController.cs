@@ -53,6 +53,21 @@ namespace PRONBS.Controllers
             return View();
         }
 
+        public IActionResult Prospecting()
+        {
+            return View();
+        }
+
+        public IActionResult Projects()
+        {
+            return View();
+        }
+
+        public IActionResult TestModels()
+        {
+            return View();
+        }
+
         //Settings menu !
         public IActionResult Settings()
         {

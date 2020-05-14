@@ -101,6 +101,11 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("PurchaseOrderId")]
         public PurchaseOrder PurchaseOrder { get; set; }
 
+        // Concatinations 
+
+        [Display(Name = "Inc# and Description")]
+        public string NumberDescription { get { return string.Format("{0} {1} ", IncidentNumber, Description); } }
+
         //Reporting to accounting
         //When Status = Resolved then build an IncidentReport !
     }

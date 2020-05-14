@@ -98,7 +98,7 @@ namespace PRONBS.Controllers.ReportingControllers
         {
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber");
             ViewData["NABLogStatusId"] = new SelectList(_context.Set<NABLogStatus>(), "Id", "NABLogStatusName");
-            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLogNumber");
+            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLNumber");
             return View();
         }
 
@@ -124,7 +124,7 @@ namespace PRONBS.Controllers.ReportingControllers
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", nABLog.IncidentId);
             ViewData["NABLogStatusId"] = new SelectList(_context.Set<NABLogStatus>(), "Id", "NABLogStatusName", nABLog.NABLogStatusId);
-            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLogNumber", nABLog.WLogId);
+            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLNumber", nABLog.WLogId);
             return View(nABLog);
         }
 
@@ -143,7 +143,7 @@ namespace PRONBS.Controllers.ReportingControllers
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", nABLog.IncidentId);
             ViewData["NABLogStatusId"] = new SelectList(_context.Set<NABLogStatus>(), "Id", "NABLogStatusName", nABLog.NABLogStatusId);
-            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLogNumber", nABLog.WLogId);
+            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLNumber", nABLog.WLogId);
             return View(nABLog);
         }
 
@@ -187,7 +187,7 @@ namespace PRONBS.Controllers.ReportingControllers
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", nABLog.IncidentId);
             ViewData["NABLogStatusId"] = new SelectList(_context.Set<NABLogStatus>(), "Id", "NABLogStatusName", nABLog.NABLogStatusId);
-            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLogNumber", nABLog.WLogId);
+            ViewData["WLogId"] = new SelectList(_context.WLog, "Id", "WLNumber", nABLog.WLogId);
             return View(nABLog);
         }
 

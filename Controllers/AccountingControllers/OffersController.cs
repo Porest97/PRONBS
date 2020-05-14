@@ -114,11 +114,33 @@ namespace PRONBS.Controllers.AccountingControllers
             return View(offer);
         }
 
+        // GET: Offers/Details/5
+        public async Task<IActionResult> DetailsPrint(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var offer = await _context.Offer
+                .Include(o => o.Employee)
+                .Include(o => o.Incident)
+                .Include(o => o.OfferStatus)
+                .Include(o => o.Site)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (offer == null)
+            {
+                return NotFound();
+            }
+
+            return View(offer);
+        }
+
         // GET: Offers/Create
         public IActionResult Create()
         {
             ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName");
-            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber");
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "NumberDescription");
             ViewData["OfferStatusId"] = new SelectList(_context.Set<OfferStatus>(), "Id", "OfferStatusName");
             ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite");
             return View();
@@ -129,7 +151,7 @@ namespace PRONBS.Controllers.AccountingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
+        public async Task<IActionResult> Create([Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
         {
             if (ModelState.IsValid)
             {
@@ -147,7 +169,7 @@ namespace PRONBS.Controllers.AccountingControllers
                 return RedirectToAction(nameof(ListQuotationsCreated));
             }
             ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", offer.PersonId);
-            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", offer.IncidentId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "NumberDescription", offer.IncidentId);
             ViewData["OfferStatusId"] = new SelectList(_context.Set<OfferStatus>(), "Id", "OfferStatusName", offer.OfferStatusId);
             ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite", offer.SiteId);
             return View(offer);
@@ -167,7 +189,7 @@ namespace PRONBS.Controllers.AccountingControllers
                 return NotFound();
             }
             ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", offer.PersonId);
-            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", offer.IncidentId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "NumberDescription", offer.IncidentId);
             ViewData["OfferStatusId"] = new SelectList(_context.Set<OfferStatus>(), "Id", "OfferStatusName", offer.OfferStatusId);
             ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite", offer.SiteId);
             return View(offer);
@@ -178,7 +200,7 @@ namespace PRONBS.Controllers.AccountingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
         {
             if (id != offer.Id)
             {
@@ -216,7 +238,7 @@ namespace PRONBS.Controllers.AccountingControllers
                 return RedirectToAction(nameof(ListQuotationsCreated));
             }
             ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", offer.PersonId);
-            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", offer.IncidentId);
+            ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "NumberDescription", offer.IncidentId);
             ViewData["OfferStatusId"] = new SelectList(_context.Set<OfferStatus>(), "Id", "OfferStatusName", offer.OfferStatusId);
             ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite", offer.SiteId);
             return View(offer);

@@ -80,6 +80,32 @@ namespace PRONBS.Controllers
             return View(incident);
         }
 
+        // GET: Incidents/Details/Print
+        public async Task<IActionResult> DetailsPrint(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var incident = await _context.Incident
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (incident == null)
+            {
+                return NotFound();
+            }
+
+            return View(incident);
+        }
+
         // GET: Incidents/Create
         public IActionResult Create()
         {

@@ -1,0 +1,92 @@
+﻿@model PRONBS.Models.DataModels.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details for: @Html.ViewData.Model.ProjectDescription</h1>
+
+
+<dd>Total Hours Kost: @Html.DisplayFor(model => model.TotalHoursCost)</dd>
+
+<dd>Total Material Kost: @Html.DisplayFor(model => model.TotalMtrCost)</dd>
+
+<dd>Total project kost: @Html.DisplayFor(model => model.TotalProjectCost)</dd>
+
+
+<h6></h6>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Site)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Site.NoSite)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectManager)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectManager.FullName)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Technichian)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Technichian.FullName)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ExtraPeople)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ExtraPeople)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer1)</dt>
+        <dd class="col-sm-10"> @Html.DisplayFor(model => model.Offer1.OfferIdenifyer)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer1.TotalOfferAmount)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer1.TotalOfferAmount)</dd>
+
+
+        <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.Offer2)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer2.OfferIdenifyer)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer2.TotalOfferAmount)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer2.TotalOfferAmount)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer3)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer3.OfferIdenifyer)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer3.TotalOfferAmount)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer3.TotalOfferAmount)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer4)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer4.OfferIdenifyer)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer4.TotalOfferAmount)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer4.TotalOfferAmount)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer5)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer5.OfferIdenifyer)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Offer5.TotalOfferAmount)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Offer5.TotalOfferAmount)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectDescription)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectDescription)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectStart)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectStart)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectEnd)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectEnd)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectType)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectType.ProjectTypeName)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectStatus)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectStatus.ProjectStatusName)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ProjectLog)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProjectLog)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TotalHoursCost)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.TotalHoursCost)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TotalMtrCost)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.TotalMtrCost)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TotalProjectCost)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.TotalProjectCost)</dd>
+
+
+    </dl>
+</div>
+<div>
+    <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-sm btn-success" asp-controller="Projects" asp-action="ListProjectsCreated">Back to Projects</a>
+</div>

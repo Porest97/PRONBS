@@ -12,6 +12,7 @@
         <table class="table table-responsive-sm table-striped">
             <thead>
                 <tr>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].OfferIdenifyer)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].Site)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].Employee)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].DateTimeOffered)</th>
@@ -26,6 +27,7 @@
                 @foreach (var item in Model.Quotations.OrderBy(q => q.DateTimeOffered))
                 {
                     <tr>
+                        <td>@Html.DisplayFor(modelItem => item.OfferIdenifyer)</td>
                         <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
                         <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
@@ -36,7 +38,7 @@
                         <td>
                             <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                             <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            @*<a class="btn btn-sm btn-danger" asp-controller="Offers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                            <a class="btn btn-sm btn-outline-success" asp-controller="Offers" asp-action="DetailsPrint" asp-route-id="@item.Id">DetailsReceipt</a>
                         </td>
                     </tr>
                 }

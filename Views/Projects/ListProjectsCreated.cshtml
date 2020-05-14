@@ -1,0 +1,49 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListProjectsCreated";
+}
+    <div class="badge">
+        <h1>Projects - Created</h1>
+       
+        <a class="btn btn-sm btn-success" asp-controller="Projects" asp-action="Create">Create new Project</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Prospecting">Back to Prospecting</a>
+
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectDescription)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectStart)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectEnd)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectManager)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].Site)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].TotalHoursCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].TotalMtrCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.Projects[0].TotalProjectCost)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Projects.OrderBy(p => p.ProjectStart))
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectStart)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectEnd)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectManager.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Site.NoSite)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalHoursCost)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalMtrCost)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalProjectCost)</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="Projects" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="Projects" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-success" asp-controller="Projects" asp-action="LogDetails" asp-route-id="@item.Id">Log</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>

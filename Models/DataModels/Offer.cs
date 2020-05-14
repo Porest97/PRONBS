@@ -11,6 +11,10 @@ namespace PRONBS.Models.DataModels
     {
         public int Id { get; set; }
 
+        //UniIdintifyer !
+        [Display(Name = "Identifyer")]
+        public string OfferIdenifyer { get; set; }
+
         //DateTime Offering !
         [Display(Name = "Offering Date")]
         public DateTime? DateTimeOffered { get; set; }
@@ -84,6 +88,9 @@ namespace PRONBS.Models.DataModels
         [Display(Name = "Total Offer")]
         [DataType(DataType.Currency)]
         public double TotalOfferAmount { get; set; }
+        
+      
+
     }
 
     public class OfferStatus

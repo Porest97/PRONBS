@@ -1,0 +1,49 @@
+﻿@model PRONBS.LAB.Models.ViewModels.ViewModel 
+@{
+    ViewData["Title"] = "ListSubModels";
+}
+    <div class="badge">
+        <h1>SubModels</h1>
+
+        <a class="btn btn-sm btn-success" asp-controller="TestModels" asp-action="Create">Create new TestModel</a>
+        <a class="btn btn-sm btn-success" asp-controller="SubModels" asp-action="Create">Create new SubModel</a>
+
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].Hours)</th>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].Mtr)</th>
+                    <th>@Html.DisplayNameFor(model => model.SubModels[0].TotalCost)</th>
+                    @* <th>@Html.DisplayNameFor(model => model.SubModels[0].Offer2)</th>
+        <th>@Html.DisplayNameFor(model => model.Projects[0].TotalMtrCost)</th>
+        <th>@Html.DisplayNameFor(model => model.Projects[0].TotalProjectCost)</th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SubModels.OrderBy(t => t.Id))
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Mtr)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+                    @*  <td>@Html.DisplayFor(modelItem => item.Offer2)</td>
+        <td>@Html.DisplayFor(modelItem => item.TotalMtrCost)</td>
+        <td>@Html.DisplayFor(modelItem => item.TotalProjectCost)</td>*@
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="SubModels" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="SubModels" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @*<a class="btn btn-sm btn-danger" asp-controller="NABLogs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>

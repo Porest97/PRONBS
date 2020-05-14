@@ -18,6 +18,8 @@ namespace PRONBS.Models.ViewModels
 
         public List<Person> People { get; internal set; }
 
+        public List<Project> Projects { get; internal set; }
+
         public List<PurchaseOrder> PurchaseOrders { get; internal set; }
 
         public List<Offer> Quotations { get; internal set; }

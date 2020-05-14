@@ -219,6 +219,67 @@ namespace PRONBS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PRONBS.LAB.Models.DataModels.SubModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Hours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Mtr")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubModel");
+                });
+
+            modelBuilder.Entity("PRONBS.LAB.Models.DataModels.TestModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SubModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubModelId1")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalHours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalMtr")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubModelId");
+
+                    b.HasIndex("SubModelId1");
+
+                    b.ToTable("TestModel");
+                });
+
             modelBuilder.Entity("PRONBS.Models.DataModels.Company", b =>
                 {
                     b.Property<int>("Id")
@@ -527,6 +588,9 @@ namespace PRONBS.Migrations
                     b.Property<double>("KostMtrl")
                         .HasColumnType("float");
 
+                    b.Property<string>("OfferIdenifyer")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("OfferStatusId")
                         .HasColumnType("int");
 
@@ -704,6 +768,122 @@ namespace PRONBS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PersonType");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ExtraPeople")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OfferId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OfferId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OfferId2")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OfferId3")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OfferId4")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PersonId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProjectDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ProjectEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProjectLog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ProjectStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ProjectStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProjectTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SiteId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalHoursCost")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalMtrCost")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalProjectCost")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfferId");
+
+                    b.HasIndex("OfferId1");
+
+                    b.HasIndex("OfferId2");
+
+                    b.HasIndex("OfferId3");
+
+                    b.HasIndex("OfferId4");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("PersonId1");
+
+                    b.HasIndex("ProjectStatusId");
+
+                    b.HasIndex("ProjectTypeId");
+
+                    b.HasIndex("SiteId");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.ProjectStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ProjectStatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectStatus");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.ProjectType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ProjectTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectType");
                 });
 
             modelBuilder.Entity("PRONBS.Models.DataModels.PurchaseOrder", b =>
@@ -944,6 +1124,17 @@ namespace PRONBS.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PRONBS.LAB.Models.DataModels.TestModel", b =>
+                {
+                    b.HasOne("PRONBS.LAB.Models.DataModels.SubModel", "Offer1")
+                        .WithMany()
+                        .HasForeignKey("SubModelId");
+
+                    b.HasOne("PRONBS.LAB.Models.DataModels.SubModel", "Offer2")
+                        .WithMany()
+                        .HasForeignKey("SubModelId1");
+                });
+
             modelBuilder.Entity("PRONBS.Models.DataModels.Company", b =>
                 {
                     b.HasOne("PRONBS.Models.DataModels.CompanyRole", "CompanyRole")
@@ -1049,6 +1240,49 @@ namespace PRONBS.Migrations
                     b.HasOne("PRONBS.Models.DataModels.PersonType", "PersonType")
                         .WithMany()
                         .HasForeignKey("PersonTypeId");
+                });
+
+            modelBuilder.Entity("PRONBS.Models.DataModels.Project", b =>
+                {
+                    b.HasOne("PRONBS.Models.DataModels.Offer", "Offer1")
+                        .WithMany()
+                        .HasForeignKey("OfferId");
+
+                    b.HasOne("PRONBS.Models.DataModels.Offer", "Offer2")
+                        .WithMany()
+                        .HasForeignKey("OfferId1");
+
+                    b.HasOne("PRONBS.Models.DataModels.Offer", "Offer3")
+                        .WithMany()
+                        .HasForeignKey("OfferId2");
+
+                    b.HasOne("PRONBS.Models.DataModels.Offer", "Offer4")
+                        .WithMany()
+                        .HasForeignKey("OfferId3");
+
+                    b.HasOne("PRONBS.Models.DataModels.Offer", "Offer5")
+                        .WithMany()
+                        .HasForeignKey("OfferId4");
+
+                    b.HasOne("PRONBS.Models.DataModels.Person", "ProjectManager")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("PRONBS.Models.DataModels.Person", "Technichian")
+                        .WithMany()
+                        .HasForeignKey("PersonId1");
+
+                    b.HasOne("PRONBS.Models.DataModels.ProjectStatus", "ProjectStatus")
+                        .WithMany()
+                        .HasForeignKey("ProjectStatusId");
+
+                    b.HasOne("PRONBS.Models.DataModels.ProjectType", "ProjectType")
+                        .WithMany()
+                        .HasForeignKey("ProjectTypeId");
+
+                    b.HasOne("PRONBS.Models.DataModels.Site", "Site")
+                        .WithMany()
+                        .HasForeignKey("SiteId");
                 });
 
             modelBuilder.Entity("PRONBS.Models.DataModels.Site", b =>
