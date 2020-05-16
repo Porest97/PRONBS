@@ -1,0 +1,83 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListIncidentsP2";
+}
+
+<div class="badge">
+    <h1>Incidents - P2</h1>
+
+    @*<a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Create">Create new Incident</a>*@
+    <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Incidents">Back to Incidents</a>
+    @*<a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Reporting">Back to Reporting</a>*@
+
+
+    <table class="table table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].IncidentPriority)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].IncidentNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].Site)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].IncidentType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].PurchaseOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].IncidentStatus)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriorityId))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Site.NoSite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentType.IncidentTypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseOrder.PONumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentStatus.IncidentStatusName)
+                    </td>
+
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-success" asp-controller="Incidents" asp-action="DetailsPrint" asp-route-id="@item.Id">Details Receipt</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>	

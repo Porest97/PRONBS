@@ -48,11 +48,87 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.Site)
-                .Include(i => i.PurchaseOrder)
+                .Include(i => i.PurchaseOrder).Where(i => i.IncidentStatusId < 3)
                 .ToList()
             };
             return View(dataViewModel);
         }
+
+        // GET: ListIncidentsP1
+        public IActionResult ListIncidentsP1()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                Incidents = _context.Incident
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.Receiver)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Where(i => i.IncidentPriorityId == 1).Where(i => i.IncidentStatusId < 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListIncidentsP2
+        public IActionResult ListIncidentsP2()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                Incidents = _context.Incident
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.Receiver)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Where(i => i.IncidentPriorityId == 2).Where(i => i.IncidentStatusId < 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListIncidentsP3
+        public IActionResult ListIncidentsP3()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                Incidents = _context.Incident
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.Receiver)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Where(i => i.IncidentPriorityId == 3).Where(i => i.IncidentStatusId < 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+        // GET: ListIncidentsP3
+        public IActionResult ListIncidentsSolved()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                Incidents = _context.Incident
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.Receiver)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Where(i => i.IncidentStatusId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+                
 
         // GET: Incidents/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -80,7 +156,7 @@ namespace PRONBS.Controllers
             return View(incident);
         }
 
-        // GET: Incidents/Details/Print
+        // GET: Incidents/DetailsPrint/5
         public async Task<IActionResult> DetailsPrint(int? id)
         {
             if (id == null)
