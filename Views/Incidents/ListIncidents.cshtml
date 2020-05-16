@@ -3,7 +3,7 @@
     ViewData["Title"] = "ListIncidents";
 }
 <div class="badge">
-    <h1>Incidents - All</h1>
+    <h1>Incidents - All ( Status Created to Dispatched )</h1>
 
     <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Create">Create new Incident</a>
     <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Incidents">Back to Incidents</a>
@@ -29,6 +29,9 @@
                     @Html.DisplayNameFor(model => model.Incidents[0].Description)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Incidents[0].FEScheduled)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Incidents[0].IncidentType)
                 </th>
                 <th>
@@ -42,40 +45,43 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriorityId))
+            @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriorityId).ThenByDescending(i => i.FEScheduled))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IncidentNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Site.NoSite)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IncidentType.IncidentTypeName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PurchaseOrder.PONumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IncidentStatus.IncidentStatusName)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Site.NoSite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FEScheduled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentType.IncidentTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseOrder.PONumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentStatus.IncidentStatusName)
+                </td>
 
-                    <td>
-                        <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-sm btn-outline-success" asp-controller="Incidents" asp-action="DetailsPrint" asp-route-id="@item.Id">Details Receipt</a>
-                    </td>
-                </tr>
+                <td>
+                    <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-success" asp-controller="Incidents" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-sm btn-outline-success" asp-controller="Incidents" asp-action="DetailsPrint" asp-route-id="@item.Id">Details Receipt</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
