@@ -53,6 +53,11 @@ namespace PRONBS.Controllers
             return View();
         }
 
+        public IActionResult Mobile()
+        {
+            return View();
+        }
+
         public IActionResult Prospecting()
         {
             return View();

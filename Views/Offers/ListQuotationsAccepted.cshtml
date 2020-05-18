@@ -7,6 +7,7 @@
         <h4>Total Quoted: @Model.Quotations.Sum(q => q.TotalOfferAmount) SEK</h4>
         <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Create">Create new offer</a>
         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Quotations">Back to Quotations</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Mobile">Back to Mobile</a>
 
 
         <table class="table table-responsive-sm table-striped">
@@ -26,21 +27,21 @@
             <tbody>
                 @foreach (var item in Model.Quotations.OrderBy(q => q.DateTimeOffered))
                 {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.OfferIdenifyer)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
-                    <td>@Html.DisplayFor(modelItem => item.DateTimeScheduledStart)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
-                    <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
-                    <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
-                    <td>
-                        <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-sm btn-outline-success" asp-controller="Offers" asp-action="DetailsPrint" asp-route-id="@item.Id">DetailsReceipt</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.OfferIdenifyer)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeScheduledStart)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-sm btn-outline-success" asp-controller="Offers" asp-action="DetailsPrint" asp-route-id="@item.Id">DetailsReceipt</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

@@ -3,5 +3,24 @@
     ViewData["Title"] = "Links";
 }
 
-<h1>Links</h1>
+<h1>Direct Links</h1>
+<h4>People</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="People" asp-action="ListPeople">List all People</a>
+    </li>
+</ul>
+<h4>Projects</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Projects" asp-action="ListProjectsCreated">Direct To Projects</a>
+    </li>
+</ul>
+<h4>Incidents</h4>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidents">List Incidents Recived and Dispatched</a>
+    </li>
+</ul>
+
 
