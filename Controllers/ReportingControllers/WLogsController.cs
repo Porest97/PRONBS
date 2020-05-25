@@ -25,7 +25,8 @@ namespace PRONBS.Controllers.ReportingControllers
         {
             var applicationDbContext = _context.WLog
                 .Include(w => w.Incident)
-                .Include(w => w.WLogStatus);
+                .Include(w => w.WLogStatus)
+                .Include(w => w.Employee);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,6 +38,33 @@ namespace PRONBS.Controllers.ReportingControllers
                 WLogs = _context.WLog
                 .Include(w => w.WLogStatus)
                 .Include(w => w.Incident)
+                .Include(w => w.Employee)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+        // GET: ListWLogsPO
+        public IActionResult ListWLogsPO()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                WLogs = _context.WLog
+                .Include(w => w.WLogStatus)
+                .Include(w => w.Incident)
+                .Include(w => w.Employee).Where(w => w.PersonId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+        // GET: ListWLogsJM
+        public IActionResult ListWLogsJM()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                WLogs = _context.WLog
+                .Include(w => w.WLogStatus)
+                .Include(w => w.Incident)
+                .Include(w => w.Employee).Where(w => w.PersonId == 2)
                 .ToList()
             };
             return View(dataViewModel);
@@ -53,6 +81,7 @@ namespace PRONBS.Controllers.ReportingControllers
             var wLog = await _context.WLog
                 .Include(w => w.Incident)                
                 .Include(w => w.WLogStatus)
+                .Include(w => w.Employee)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (wLog == null)
             {
@@ -66,6 +95,7 @@ namespace PRONBS.Controllers.ReportingControllers
         public IActionResult Create()
         {
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber");
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName");
             ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName");
             return View();
         }
@@ -75,7 +105,7 @@ namespace PRONBS.Controllers.ReportingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId")] WLog wLog)
+        public async Task<IActionResult> Create([Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId,PersonId")] WLog wLog)
         {
             if (ModelState.IsValid)
             {
@@ -84,6 +114,7 @@ namespace PRONBS.Controllers.ReportingControllers
                 return RedirectToAction(nameof(ListWLogs));
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", wLog.PersonId);
             ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }
@@ -102,6 +133,7 @@ namespace PRONBS.Controllers.ReportingControllers
                 return NotFound();
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", wLog.PersonId);
             ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }
@@ -111,7 +143,7 @@ namespace PRONBS.Controllers.ReportingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId")] WLog wLog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,WLNumber,Hours,DateTimeFrom,DateTimeTo,Subject,WLogStatusId,IncidentId,PersonId")] WLog wLog)
         {
             if (id != wLog.Id)
             {
@@ -139,6 +171,7 @@ namespace PRONBS.Controllers.ReportingControllers
                 return RedirectToAction(nameof(ListWLogs));
             }
             ViewData["IncidentId"] = new SelectList(_context.Incident, "Id", "IncidentNumber", wLog.IncidentId);
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", wLog.PersonId);
             ViewData["WLogStatusId"] = new SelectList(_context.WLogStatus, "Id", "WLogStatusName", wLog.WLogStatusId);
             return View(wLog);
         }

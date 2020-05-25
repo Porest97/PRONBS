@@ -106,6 +106,10 @@ namespace PRONBS.Models.DataModels
         [Display(Name = "Total Mtr. Cost")]
         public double TotalMtrCost { get; set; }
 
+        //////DisplayName !
+        //[Display(Name = "Project")]
+        //public string DisplayName { get { return string.Format("{0} {1} ", , ProjectDescription); } }
+
     }
     public class ProjectType
     {

@@ -5,7 +5,7 @@
 }
 
 <div>
-    <h6> Offer: @Html.DisplayFor(model => model.Incident.IncidentNumber) - @Html.DisplayFor(model => model.DateTimeOffered)</h6>
+    <h6> Offer: @Html.DisplayFor(model => model.Incident.IncidentNumber) - @Html.DisplayFor(model => model.DateTimeOffered) in Euro</h6>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -72,19 +72,19 @@
             @Html.DisplayNameFor(model => model.PricePerHour)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PricePerHour)
+            @Html.DisplayFor(model => model.PricePerHour) Euro
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.KostHours)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KostHours)
+            @Html.DisplayFor(model => model.KostHours) Euro
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.KostMtrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KostMtrl)
+            @Html.DisplayFor(model => model.KostMtrl) Euro
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Riskfaktor)
@@ -96,7 +96,7 @@
             @Html.DisplayNameFor(model => model.TotalOfferAmount)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TotalOfferAmount)
+            @Html.DisplayFor(model => model.TotalOfferAmount) Euro
         </dd>
     </dl>
 </div>

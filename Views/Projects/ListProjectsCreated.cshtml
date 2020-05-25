@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Projects[0].Id)</th>
-                    <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectDescription)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.Projects[0].ProjectDescription)</th>*@
                     <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectStart)</th>
                     <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectEnd)</th>
                     <th>@Html.DisplayNameFor(model => model.Projects[0].ProjectManager)</th>
@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ProjectDescription)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.ProjectDescription)</td>*@
                         <td>@Html.DisplayFor(modelItem => item.ProjectStart)</td>
                         <td>@Html.DisplayFor(modelItem => item.ProjectEnd)</td>
                         <td>@Html.DisplayFor(modelItem => item.ProjectManager.FullName)</td>

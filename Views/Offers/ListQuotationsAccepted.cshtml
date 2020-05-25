@@ -21,27 +21,29 @@
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].Incident.Description)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].TotalOfferAmount)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].OfferStatus)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].File)</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Quotations.OrderBy(q => q.DateTimeOffered))
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.OfferIdenifyer)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DateTimeScheduledStart)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
-                        <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
-                        <td>
-                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            <a class="btn btn-sm btn-outline-success" asp-controller="Offers" asp-action="DetailsPrint" asp-route-id="@item.Id">DetailsReceipt</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.OfferIdenifyer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Site.SiteName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeOffered)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeScheduledStart)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.File)</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-success" asp-controller="Offers" asp-action="DetailsPrint" asp-route-id="@item.Id">DetailsReceipt</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

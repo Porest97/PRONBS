@@ -128,6 +128,14 @@ namespace PRONBS.Controllers.AccountingControllers
                 .Include(o => o.OfferStatus)
                 .Include(o => o.Site)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            offer.KostMtrl /= 10;
+            offer.PricePerHour /= 10;
+
+            offer.KostHours = (offer.HoursOnSite * offer.PricePerHour);
+            
+            offer.TotalOfferAmount = ((offer.KostHours + offer.KostMtrl) * offer.Riskfaktor);
+
             if (offer == null)
             {
                 return NotFound();
@@ -151,7 +159,7 @@ namespace PRONBS.Controllers.AccountingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
+        public async Task<IActionResult> Create([Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount,File")] Offer offer)
         {
             if (ModelState.IsValid)
             {
@@ -200,7 +208,7 @@ namespace PRONBS.Controllers.AccountingControllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount")] Offer offer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OfferIdenifyer,DateTimeOffered,OfferStatusId,PersonId,SiteId,IncidentId,DateTimeScheduledStart,DateTimeScheduledEnd,HoursOnSite,PricePerHour,KostHours,KostMtrl,Riskfaktor,TotalOfferAmount,File")] Offer offer)
         {
             if (id != offer.Id)
             {

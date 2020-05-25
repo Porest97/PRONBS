@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200519171321_MtrlListsAded")]
+    partial class MtrlListsAded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -422,9 +424,6 @@ namespace PRONBS.Migrations
                     b.Property<int?>("PersonId2")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectReportId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PurchaseOrderId")
                         .HasColumnType("int");
 
@@ -452,8 +451,6 @@ namespace PRONBS.Migrations
                     b.HasIndex("PersonId1");
 
                     b.HasIndex("PersonId2");
-
-                    b.HasIndex("ProjectReportId");
 
                     b.HasIndex("PurchaseOrderId");
 
@@ -630,9 +627,6 @@ namespace PRONBS.Migrations
 
                     b.Property<DateTime?>("DateTimeScheduledStart")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("File")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("HoursOnSite")
                         .HasColumnType("float");
@@ -914,34 +908,6 @@ namespace PRONBS.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("PRONBS.Models.DataModels.ProjectReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReportConclusions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReportName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ReportStatusId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("ReportStatusId");
-
-                    b.ToTable("ProjectReport");
-                });
-
             modelBuilder.Entity("PRONBS.Models.DataModels.ProjectStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -994,21 +960,6 @@ namespace PRONBS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PurchaseOrder");
-                });
-
-            modelBuilder.Entity("PRONBS.Models.DataModels.ReportStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ReportStatusName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReportStatus");
                 });
 
             modelBuilder.Entity("PRONBS.Models.DataModels.Site", b =>
@@ -1141,9 +1092,6 @@ namespace PRONBS.Migrations
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
@@ -1156,8 +1104,6 @@ namespace PRONBS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IncidentId");
-
-                    b.HasIndex("PersonId");
 
                     b.HasIndex("WLogStatusId");
 
@@ -1286,10 +1232,6 @@ namespace PRONBS.Migrations
                         .WithMany()
                         .HasForeignKey("PersonId2");
 
-                    b.HasOne("PRONBS.Models.DataModels.ProjectReport", null)
-                        .WithMany("Incidents")
-                        .HasForeignKey("ProjectReportId");
-
                     b.HasOne("PRONBS.Models.DataModels.PurchaseOrder", "PurchaseOrder")
                         .WithMany()
                         .HasForeignKey("PurchaseOrderId");
@@ -1399,17 +1341,6 @@ namespace PRONBS.Migrations
                         .HasForeignKey("SiteId");
                 });
 
-            modelBuilder.Entity("PRONBS.Models.DataModels.ProjectReport", b =>
-                {
-                    b.HasOne("PRONBS.Models.DataModels.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId");
-
-                    b.HasOne("PRONBS.Models.DataModels.ReportStatus", "ReportStatus")
-                        .WithMany()
-                        .HasForeignKey("ReportStatusId");
-                });
-
             modelBuilder.Entity("PRONBS.Models.DataModels.Site", b =>
                 {
                     b.HasOne("PRONBS.Models.DataModels.Company", "Company")
@@ -1442,10 +1373,6 @@ namespace PRONBS.Migrations
                     b.HasOne("PRONBS.Models.DataModels.Incident", "Incident")
                         .WithMany()
                         .HasForeignKey("IncidentId");
-
-                    b.HasOne("PRONBS.Models.DataModels.Person", "Employee")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
 
                     b.HasOne("PRONBS.Models.DataModels.WLogStatus", "WLogStatus")
                         .WithMany()

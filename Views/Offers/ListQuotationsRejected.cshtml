@@ -22,6 +22,7 @@
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].Incident.Description)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].TotalOfferAmount)</th>
                     <th>@Html.DisplayNameFor(model => model.Quotations[0].OfferStatus)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quotations[0].File)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Incident.Description)</td>
                         <td>@Html.DisplayFor(modelItem => item.TotalOfferAmount)</td>
                         <td>@Html.DisplayFor(modelItem => item.OfferStatus.OfferStatusName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.File)</td>
                         <td>
                             <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                             <a class="btn btn-sm btn-success" asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id">Details</a>

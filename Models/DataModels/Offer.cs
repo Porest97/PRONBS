@@ -65,17 +65,17 @@ namespace PRONBS.Models.DataModels
         public double HoursOnSite { get; set; }
 
         [Display(Name = "Price per hour")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public double PricePerHour { get; set; }
 
         [Display(Name = "Kost Hours")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public double KostHours { get; set; }
 
         //Material Kost !
 
         [Display(Name = "Kost MTRL")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public double KostMtrl { get; set; }
 
         //Risk assesment !
@@ -86,10 +86,13 @@ namespace PRONBS.Models.DataModels
         //Total offer amount !
 
         [Display(Name = "Total Offer")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public double TotalOfferAmount { get; set; }
         
-      
+        //Url to pictures !
+        [Display(Name ="File")]
+        [DataType(DataType.Url)]
+        public string File { get; set; }
 
     }
 

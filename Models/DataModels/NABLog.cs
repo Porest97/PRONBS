@@ -53,7 +53,12 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("NABLogStatusId")]
         public NABLogStatus NABLogStatus { get; set; }
 
-       
+        //[Display(Name = "Employee")]
+        //public int? PersonId { get; set; }
+        //[Display(Name = "Employee")]
+        //[ForeignKey("PersonId")]
+        //public Person Employee { get; set; }
+
     }
     public class NABLogStatus
     {

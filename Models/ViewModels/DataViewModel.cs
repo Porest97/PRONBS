@@ -28,7 +28,7 @@ namespace PRONBS.Models.ViewModels
 
         public List<WLog> WLogs { get; internal set; }
 
-       
+        public List<MtrlList> MtrlLists { get; internal set; }
 
     }
 }

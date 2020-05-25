@@ -42,5 +42,8 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.ProjectType> ProjectType { get; set; }
         public DbSet<PRONBS.LAB.Models.DataModels.TestModel> TestModel { get; set; }
         public DbSet<PRONBS.LAB.Models.DataModels.SubModel> SubModel { get; set; }
+        public DbSet<PRONBS.Models.DataModels.MtrlList> MtrlList { get; set; }
+        public DbSet<PRONBS.Models.DataModels.ProjectReport> ProjectReport { get; set; }
+        
     }
 }

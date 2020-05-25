@@ -308,6 +308,89 @@ namespace PRONBS.Controllers.ProspectingControllers
             return View(project);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        // GET: Projects/Edit/Log
+        public async Task<IActionResult> EditLog(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var project = await _context.Project.FindAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            ViewData["OfferId"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId);
+            ViewData["OfferId1"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId1);
+            ViewData["OfferId2"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId2);
+            ViewData["OfferId3"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId3);
+            ViewData["OfferId4"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId4);
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", project.PersonId);
+            ViewData["ProjectStatusId"] = new SelectList(_context.Set<ProjectStatus>(), "Id", "ProjectStatusName", project.ProjectStatusId);
+            ViewData["ProjectTypeId"] = new SelectList(_context.Set<ProjectType>(), "Id", "ProjectTypeName", project.ProjectTypeId);
+            ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite", project.SiteId);
+            ViewData["PersonId1"] = new SelectList(_context.Person, "Id", "FullName", project.PersonId1);
+            return View(project);
+        }
+
+        // POST: Projects/Edit/Log
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditLog(int id, [Bind("Id,SiteId,PersonId,PersonId1,ExtraPeople,OfferId,OfferId1,OfferId2,OfferId3,OfferId4,ProjectDescription,ProjectStart,ProjectEnd,ProjectTypeId,ProjectStatusId,ProjectLog,TotalProjectCost,TotalHoursCost,TotalMtrCost")] Project project)
+        {
+            if (id != project.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    
+
+                    _context.Update(project);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProjectExists(project.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(ListProjectsCreated));
+            }
+            ViewData["OfferId"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId);
+            ViewData["OfferId1"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId1);
+            ViewData["OfferId2"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId2);
+            ViewData["OfferId3"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId3);
+            ViewData["OfferId4"] = new SelectList(_context.Offer, "Id", "OfferIdenifyer", project.OfferId4);
+            ViewData["PersonId"] = new SelectList(_context.Person, "Id", "FullName", project.PersonId);
+            ViewData["ProjectStatusId"] = new SelectList(_context.Set<ProjectStatus>(), "Id", "ProjectStatusName", project.ProjectStatusId);
+            ViewData["ProjectTypeId"] = new SelectList(_context.Set<ProjectType>(), "Id", "ProjectTypeName", project.ProjectTypeId);
+            ViewData["SiteId"] = new SelectList(_context.Site, "Id", "NoSite", project.SiteId);
+            ViewData["PersonId1"] = new SelectList(_context.Person, "Id", "FullName", project.PersonId1);
+            return View(project);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+
         // GET: Projects/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

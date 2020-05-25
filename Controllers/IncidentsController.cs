@@ -31,7 +31,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.PurchaseOrder)
                 .Include(i => i.Receiver)
-                .Include(i => i.Site);
+                .Include(i => i.Site).Include(i => i.MtrlList);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -48,6 +48,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.Site)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .Include(i => i.PurchaseOrder).Where(i => i.IncidentStatusId < 3)
                 .ToList()
             };
@@ -67,6 +68,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .Include(i => i.Site).Where(i => i.IncidentPriorityId == 1).Where(i => i.IncidentStatusId < 3)
                 .ToList()
             };
@@ -86,6 +88,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .Include(i => i.Site).Where(i => i.IncidentPriorityId == 2).Where(i => i.IncidentStatusId < 3)
                 .ToList()
             };
@@ -105,6 +108,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .Include(i => i.Site).Where(i => i.IncidentPriorityId == 3).Where(i => i.IncidentStatusId < 3)
                 .ToList()
             };
@@ -123,6 +127,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.IncidentType)
                 .Include(i => i.Receiver)
                 .Include(i => i.PurchaseOrder)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .Include(i => i.Site).Where(i => i.IncidentStatusId == 3)
                 .ToList()
             };
@@ -147,6 +152,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.PurchaseOrder)
                 .Include(i => i.Receiver)
                 .Include(i => i.Site)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (incident == null)
             {
@@ -173,6 +179,7 @@ namespace PRONBS.Controllers
                 .Include(i => i.PurchaseOrder)
                 .Include(i => i.Receiver)
                 .Include(i => i.Site)
+                .Include(i => i.Site).Include(i => i.MtrlList)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (incident == null)
             {
@@ -185,6 +192,7 @@ namespace PRONBS.Controllers
         // GET: Incidents/Create
         public IActionResult Create()
         {
+            ViewData["MtrlListId"] = new SelectList(_context.Set<MtrlList>(), "Id", "Description");
             ViewData["PersonId"] = new SelectList(_context.Set<Person>(), "Id", "FullName");
             ViewData["PersonId2"] = new SelectList(_context.Set<Person>(), "Id", "FullName");
             ViewData["IncidentPriorityId"] = new SelectList(_context.Set<IncidentPriority>(), "Id", "IncidentPriorityName");
@@ -201,7 +209,7 @@ namespace PRONBS.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IncidentPriorityId,IncidentStatusId,IncidentTypeId,IncidentNumber,Created,PersonId,SiteId,Received,PersonId1,FEScheduled,PersonId2,Description,FEEntersSite,FEEExitsSite,Logg,IssueResolved,Resolution,PurchaseOrderId")] Incident incident)
+        public async Task<IActionResult> Create([Bind("Id,IncidentPriorityId,IncidentStatusId,IncidentTypeId,IncidentNumber,Created,PersonId,SiteId,Received,PersonId1,FEScheduled,PersonId2,Description,FEEntersSite,FEEExitsSite,Logg,IssueResolved,Resolution,PurchaseOrderId.MtrlListId")] Incident incident)
         {
             if (ModelState.IsValid)
             {
@@ -209,6 +217,7 @@ namespace PRONBS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ListIncidents));
             }
+            ViewData["MtrlListId"] = new SelectList(_context.Set<MtrlList>(), "Id", "Description", incident.MtrlListId);
             ViewData["PersonId"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId);
             ViewData["PersonId2"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId2);
             ViewData["IncidentPriorityId"] = new SelectList(_context.Set<IncidentPriority>(), "Id", "IncidentPriorityName", incident.IncidentPriorityId);
@@ -233,6 +242,7 @@ namespace PRONBS.Controllers
             {
                 return NotFound();
             }
+            ViewData["MtrlListId"] = new SelectList(_context.Set<MtrlList>(), "Id", "Description", incident.MtrlListId);
             ViewData["PersonId"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId);
             ViewData["PersonId2"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId2);
             ViewData["IncidentPriorityId"] = new SelectList(_context.Set<IncidentPriority>(), "Id", "IncidentPriorityName", incident.IncidentPriorityId);
@@ -249,7 +259,7 @@ namespace PRONBS.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IncidentPriorityId,IncidentStatusId,IncidentTypeId,IncidentNumber,Created,PersonId,SiteId,Received,PersonId1,FEScheduled,PersonId2,Description,FEEntersSite,FEEExitsSite,Logg,IssueResolved,Resolution,PurchaseOrderId")] Incident incident)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IncidentPriorityId,IncidentStatusId,IncidentTypeId,IncidentNumber,Created,PersonId,SiteId,Received,PersonId1,FEScheduled,PersonId2,Description,FEEntersSite,FEEExitsSite,Logg,IssueResolved,Resolution,PurchaseOrderId,MtrlListId")] Incident incident)
         {
             if (id != incident.Id)
             {
@@ -276,6 +286,7 @@ namespace PRONBS.Controllers
                 }
                 return RedirectToAction(nameof(ListIncidents));
             }
+            ViewData["MtrlListId"] = new SelectList(_context.Set<MtrlList>(), "Id", "Description", incident.MtrlListId);
             ViewData["PersonId"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId);
             ViewData["PersonId2"] = new SelectList(_context.Set<Person>(), "Id", "FullName", incident.PersonId2);
             ViewData["IncidentPriorityId"] = new SelectList(_context.Set<IncidentPriority>(), "Id", "IncidentPriorityName", incident.IncidentPriorityId);

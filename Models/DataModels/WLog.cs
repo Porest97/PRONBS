@@ -39,6 +39,12 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("IncidentId")]
         public Incident Incident { get; set; }
 
+        [Display(Name = "Employee")]
+        public int? PersonId { get; set; }
+        [Display(Name = "Employee")]
+        [ForeignKey("PersonId")]
+        public Person Employee { get; set; }
+
     }
 
     //Statuses !

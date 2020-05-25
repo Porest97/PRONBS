@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200522123318_PrjectReportsAdded")]
+    partial class PrjectReportsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -631,9 +633,6 @@ namespace PRONBS.Migrations
                     b.Property<DateTime?>("DateTimeScheduledStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("File")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("HoursOnSite")
                         .HasColumnType("float");
 
@@ -1141,9 +1140,6 @@ namespace PRONBS.Migrations
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
@@ -1156,8 +1152,6 @@ namespace PRONBS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IncidentId");
-
-                    b.HasIndex("PersonId");
 
                     b.HasIndex("WLogStatusId");
 
@@ -1442,10 +1436,6 @@ namespace PRONBS.Migrations
                     b.HasOne("PRONBS.Models.DataModels.Incident", "Incident")
                         .WithMany()
                         .HasForeignKey("IncidentId");
-
-                    b.HasOne("PRONBS.Models.DataModels.Person", "Employee")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
 
                     b.HasOne("PRONBS.Models.DataModels.WLogStatus", "WLogStatus")
                         .WithMany()
