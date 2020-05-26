@@ -44,6 +44,8 @@ namespace PRONBS.Data
         public DbSet<PRONBS.LAB.Models.DataModels.SubModel> SubModel { get; set; }
         public DbSet<PRONBS.Models.DataModels.MtrlList> MtrlList { get; set; }
         public DbSet<PRONBS.Models.DataModels.ProjectReport> ProjectReport { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Bill> Bill { get; set; }
+        public DbSet<PRONBS.Models.DataModels.BillStatus> BillStatus { get; set; }
         
     }
 }

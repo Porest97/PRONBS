@@ -2,18 +2,19 @@
 @{
     ViewData["Title"] = "ListNABLogsCreated";
 }
+
     <div class="badge">
         <h1>NABLogs - Created</h1>
         <h4>Total Hours: @Model.NABLogs.Sum(nl => nl.Hours)</h4>
         <h4>Total Cost: @Model.NABLogs.Sum(nl => nl.TotalCost) SEK</h4>
         <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Create">Create new NABLog</a>
         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Reporting">Back to Reporting</a>
-
+        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Index">To NABLogs Index</a>
 
         <table class="table table-responsive-sm table-striped">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.NABLogs[0].Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.NABLogs[0].WLog.Employee)</th>
                     <th>@Html.DisplayNameFor(model => model.NABLogs[0].Incident)</th>
                     <th>@Html.DisplayNameFor(model => model.NABLogs[0].DateTimeStarted)</th>
                     <th>@Html.DisplayNameFor(model => model.NABLogs[0].DateTimeEnded)</th>
@@ -28,7 +29,7 @@
                 @foreach (var item in Model.NABLogs.OrderBy(nl => nl.DateTimeEnded))
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.WLog.Employee.FullName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
                         <td>@Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
                         <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>

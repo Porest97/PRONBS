@@ -1,9 +1,9 @@
 ﻿@model PRONBS.Models.ViewModels.DataViewModel
 @{
-    ViewData["Title"] = "ListNABLogsBilled";
+    ViewData["Title"] = "ListNABLogsReportedPO";
 }
     <div class="badge">
-        <h1>NABLogs - Billed</h1>
+        <h1>NABLogs - Reported For Per Orest</h1>
         <h4>Total Hours: @Model.NABLogs.Sum(nl => nl.Hours)</h4>
         <h4>Total Cost: @Model.NABLogs.Sum(nl => nl.TotalCost) SEK</h4>
         <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Create">Create new NABLog</a>

@@ -4,86 +4,63 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Incident)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTimeStarted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTimeEnded)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LogNotes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hours)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceHour)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MtrCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WLog)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NABLogStatus)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Incident.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTimeStarted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTimeEnded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LogNotes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PriceHour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MtrCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WLog.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NABLogStatus.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="badge">
+
+        <h1>Index - NABLogs</h1>
+
+
+
+        <form asp-controller="NABLogs" asp-action="Index">
+            <p>
+                Search for INC#: <input type="text" name="SearchString">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Incident)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateTimeStarted)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.DateTimeEnded)</th>
+                    <th>@Html.DisplayNameFor(model => model.LogNotes)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.Hours)</th>
+                    <th>@Html.DisplayNameFor(model => model.PriceHour)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.MtrCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalCost)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.WLog)</th>
+                    <th>@Html.DisplayNameFor(model => model.NABLogStatus)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
+                        <td> @Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LogNotes)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="ListNABLogsCreated">Back to NABLogs</a>
+    </div>

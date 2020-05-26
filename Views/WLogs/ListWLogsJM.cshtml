@@ -12,7 +12,7 @@
         <table class="table table-responsive-sm table-striped">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.WLogs[0].Id)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.WLogs[0].Id)</th>*@
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].Employee)</th>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].WLNumber)</th>
                     <th>@Html.DisplayNameFor(model => model.WLogs[0].DateTimeFrom)</th>
@@ -25,10 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.WLogs.OrderBy(wl => wl.WLNumber))
+                @foreach (var item in Model.WLogs.OrderByDescending(wl => wl.DateTimeFrom))
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.Id)</td>*@
                         <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
                         <td>@Html.DisplayFor(modelItem => item.WLNumber)</td>
                         <td>@Html.DisplayFor(modelItem => item.DateTimeFrom)</td>

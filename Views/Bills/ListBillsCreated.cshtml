@@ -1,0 +1,51 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListBillsCreated";
+}
+
+
+<div class="badge">
+    <h1>NABLogs - Created</h1>
+    <h4>Total Hours: @Model.Bills.Sum(b => b.Hours)</h4>
+    <h4>Total Cost: @Model.Bills.Sum(b => b.TotalCost) SEK</h4>
+    <a class="btn btn-sm btn-success" asp-controller="Bills" asp-action="Create">Create new Bill</a>
+    <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Accounting">Back to Accounting</a>
+
+   
+
+    <table class="table table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Bills[0].Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Bills[0].CompanyToBill)</th>
+                <th>@Html.DisplayNameFor(model => model.Bills[0].CompanyBilling)</th>
+                <th>@Html.DisplayNameFor(model => model.Bills[0].BillingDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Bills[0].Hours)</th>
+                <th>@Html.DisplayNameFor(model => model.NABLogs[0].PriceHour)</th>
+                <th>@Html.DisplayNameFor(model => model.NABLogs[0].MtrCost)</th>
+                <th>@Html.DisplayNameFor(model => model.NABLogs[0].TotalCost)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Bills.OrderBy(b => b.BillingDate))
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CompanyToBill.CompanyName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CompanyBilling.CompanyName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BillingDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="Bills" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="Bills" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @*<a class="btn btn-sm btn-danger" asp-controller="NABLogs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

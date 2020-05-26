@@ -21,13 +21,34 @@ namespace PRONBS.Controllers.ReportingControllers
         }
 
         // GET: NABLogs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.NABLog
+            var nABLogs = from n in _context.NABLog
+                .Include(n=> n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)
+
+                          select n;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                nABLogs = nABLogs
                 .Include(n => n.Incident)
                 .Include(n => n.NABLogStatus)
-                .Include(n => n.WLog);
-            return View(await applicationDbContext.ToListAsync());
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)
+                .Where(s => s.Incident.IncidentNumber.Contains(searchString));
+                //.Where(s => s.LogNotes.Contains(searchString));
+            }
+
+
+            //var applicationDbContext = _context.NABLog
+            //    .Include(n => n.Incident)
+            //    .Include(n => n.NABLogStatus)
+            //    .Include(n => n.WLog)
+            //    .Include(n => n.WLog.Employee);
+            return View(await nABLogs.ToListAsync());
         }
 
         // GET: ListNABLogsCreated
@@ -38,11 +59,42 @@ namespace PRONBS.Controllers.ReportingControllers
                 NABLogs = _context.NABLog
                 .Include(n => n.Incident)
                 .Include(n => n.NABLogStatus)
-                .Include(n => n.WLog).Where(n => n.NABLogStatusId == 1)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 1)
+                
                 .ToList()
             };
             return View(dataViewModel);
         }
+        // GET: ListNABLogsCreatedPO
+        public IActionResult ListNABLogsCreatedPO()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 1).Where(n=>n.WLog.PersonId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+        // GET: ListNABLogsCreatedJM
+        public IActionResult ListNABLogsCreatedJM()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 1).Where(n => n.WLog.PersonId == 2)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
 
         // GET: ListNABLogsReported
         public IActionResult ListNABLogsReported()
@@ -52,7 +104,53 @@ namespace PRONBS.Controllers.ReportingControllers
                 NABLogs = _context.NABLog
                 .Include(n => n.Incident)
                 .Include(n => n.NABLogStatus)
-                .Include(n => n.WLog).Where(n => n.NABLogStatusId == 2)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 2)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListNABLogsReportedPO
+        public IActionResult ListNABLogsReportedPO()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 2).Where(n => n.WLog.PersonId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListNABLogsReportedJM
+        public IActionResult ListNABLogsReportedJM()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 2).Where(n => n.WLog.PersonId == 2)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListNABLogsReportedJan2020
+        public IActionResult ListNABLogsReportedSearch()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n=> n.NABLogStatusId == 2)
                 .ToList()
             };
             return View(dataViewModel);
@@ -66,7 +164,38 @@ namespace PRONBS.Controllers.ReportingControllers
                 NABLogs = _context.NABLog
                 .Include(n => n.Incident)
                 .Include(n => n.NABLogStatus)
-                .Include(n => n.WLog).Where(n => n.NABLogStatusId == 3)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListNABLogsBilledPO
+        public IActionResult ListNABLogsBilledPO()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 3).Where(n => n.WLog.PersonId == 3)
+                .ToList()
+            };
+            return View(dataViewModel);
+        }
+
+        // GET: ListNABLogsBilledJM
+        public IActionResult ListNABLogsBilledJM()
+        {
+            var dataViewModel = new DataViewModel()
+            {
+                NABLogs = _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee).Where(n => n.NABLogStatusId == 3).Where(n => n.WLog.PersonId == 2)
                 .ToList()
             };
             return View(dataViewModel);
