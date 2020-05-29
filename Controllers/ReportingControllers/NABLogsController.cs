@@ -20,7 +20,7 @@ namespace PRONBS.Controllers.ReportingControllers
             _context = context;
         }
 
-        // GET: NABLogs
+        // GET: NABLogs with Inc# - search
         public async Task<IActionResult> Index(string searchString)
         {
             var nABLogs = from n in _context.NABLog
@@ -38,18 +38,62 @@ namespace PRONBS.Controllers.ReportingControllers
                 .Include(n => n.NABLogStatus)
                 .Include(n => n.WLog)
                 .Include(n => n.WLog.Employee)
-                .Where(s => s.Incident.IncidentNumber.Contains(searchString));
-                //.Where(s => s.LogNotes.Contains(searchString));
-            }
+                .Where(s => s.Incident.IncidentNumber.Contains(searchString));              
 
-
-            //var applicationDbContext = _context.NABLog
-            //    .Include(n => n.Incident)
-            //    .Include(n => n.NABLogStatus)
-            //    .Include(n => n.WLog)
-            //    .Include(n => n.WLog.Employee);
+            }          
             return View(await nABLogs.ToListAsync());
         }
+
+        // GET: NABLogs with Emlpoyee search and Reported
+        public async Task<IActionResult> IndexRep(string searchString)
+        {
+            var nABLogs = from n in _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)             
+                
+
+                          select n;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                nABLogs = nABLogs
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)                
+                .Where(n => n.WLog.Employee.FirstName.Contains(searchString));              
+
+            }            
+            return View(await nABLogs.ToListAsync());
+        }
+
+        // GET: NABLogs with Emlpoyee search and Billed
+        public async Task<IActionResult> IndexBilled(string searchString)
+        {
+            var nABLogs = from n in _context.NABLog
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)
+
+
+                          select n;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                nABLogs = nABLogs
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)
+                .Where(n => n.WLog.Employee.FirstName.Contains(searchString));
+
+            }
+            return View(await nABLogs.ToListAsync());
+        }
+
 
         // GET: ListNABLogsCreated
         public IActionResult ListNABLogsCreated()

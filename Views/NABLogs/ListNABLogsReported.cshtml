@@ -8,6 +8,7 @@
         <h4>Total Cost: @Model.NABLogs.Sum(nl => nl.TotalCost) SEK</h4>
         <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Create">Create new NABLog</a>
         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Reporting">Back to Reporting</a>
+        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="IndexRep">To NABLogs Reported - Search</a>
 
 
         <table class="table table-responsive-sm table-striped">
@@ -29,23 +30,23 @@
             <tbody>
                 @foreach (var item in Model.NABLogs.OrderBy(nl => nl.DateTimeEnded))
                 {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.WLog.Employee.FullName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
-                    <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Hours)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
-                    <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
-                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
-                    <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>
-                    <td>
-                        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        @*<a class="btn btn-sm btn-danger" asp-controller="NABLogs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.WLog.Employee.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @*<a class="btn btn-sm btn-danger" asp-controller="NABLogs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

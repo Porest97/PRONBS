@@ -1,0 +1,49 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListAssets";
+}
+    <div class="badge">
+        <h1>Assets</h1>
+
+        <a class="btn btn-sm btn-success" asp-controller="Assets" asp-action="Create">Create new Asset</a>
+        <a class="btn btn-sm btn-success" asp-controller="Assets" asp-action="IndexSite">To Accesspoints - Sitenumber Search</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Accounting">Back to Accounting</a>
+
+
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].Site)</th>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].AssetType)</th>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].AssetStatus)</th>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].AssetBrand)</th>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].Model)</th>
+                    <th>@Html.DisplayNameFor(model => model.Assets[0].Name)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.NABLogs[0].MtrCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.NABLogs[0].TotalCost)</th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Assets.OrderBy(a => a.Name))
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Site.NoSite)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AssetType.AssetTypeName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AssetStatus.AssetStatusName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AssetBrand.AssetBrandName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>*@
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="Assets" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Assets" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @*<a class="btn btn-sm btn-danger" asp-controller="NABLogs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

@@ -46,6 +46,10 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.ProjectReport> ProjectReport { get; set; }
         public DbSet<PRONBS.Models.DataModels.Bill> Bill { get; set; }
         public DbSet<PRONBS.Models.DataModels.BillStatus> BillStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Asset> Asset { get; set; }
+        public DbSet<PRONBS.Models.DataModels.AssetBrand> AssetBrand { get; set; }
+        public DbSet<PRONBS.Models.DataModels.AssetStatus> AssetStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.AssetType> AssetType { get; set; }
         
     }
 }

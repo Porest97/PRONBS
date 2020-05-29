@@ -8,6 +8,7 @@
         <h4>Total Cost: @Model.NABLogs.Sum(nl => nl.TotalCost) SEK</h4>
         <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Create">Create new NABLog</a>
         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Reporting">Back to Reporting</a>
+        <a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="IndexBilled">To NABLogs Index - Billed</a>
 
 
         <table class="table table-responsive-sm table-striped">

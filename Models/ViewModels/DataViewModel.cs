@@ -31,5 +31,7 @@ namespace PRONBS.Models.ViewModels
         public List<MtrlList> MtrlLists { get; internal set; }
 
         public List<Bill> Bills { get; internal set; }
+
+        public List<Asset> Assets { get; internal set; }
     }
 }
