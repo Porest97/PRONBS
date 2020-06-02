@@ -1,0 +1,73 @@
+﻿@model PRONBS.Models.DataModels.Plan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h6>Plan for Incident: @Html.DisplayFor(model => model.Incident.IncidentNumber) Site: @Html.DisplayFor(model => model.Incident.Site.NoSite)</h6>
+    
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PlanDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PlanDescription)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Incident)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Incident.IncidentNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage1)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage1.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage2)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage2.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage3)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage3.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage4)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage4.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage5)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage5.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Stage6)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Stage6.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PlanStatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PlanStatus.PlanStatusName)
+            </dd>
+        </dl>
+    </div>
+
+<div>
+    <a class="btn btn-sm btn-outline-success" asp-controller="Plans" asp-action="IndexSearch">Back to Search List</a>
+    <a class="btn btn-sm btn-outline-success" asp-controller="Plans" asp-action="ListPlansCreated">Back to Plans - ALL</a>
+</div>

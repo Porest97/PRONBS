@@ -50,6 +50,11 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.AssetBrand> AssetBrand { get; set; }
         public DbSet<PRONBS.Models.DataModels.AssetStatus> AssetStatus { get; set; }
         public DbSet<PRONBS.Models.DataModels.AssetType> AssetType { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Plan> Plan { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Stage> Stage { get; set; }
+        public DbSet<PRONBS.Models.DataModels.PlanStatus> PlanStatus { get; set; }
+        public DbSet<PRONBS.Models.DataModels.StageStatus> StageStatus { get; set; }
+       
         
     }
 }

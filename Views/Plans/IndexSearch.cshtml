@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.Plan>
+@{
+    ViewData["Title"] = "IndexSearch";
+}
+    <div class="badge">
+
+        <h3>Plans ALL - INC# - Search</h3>
+
+
+
+        <form asp-controller="Plans" asp-action="IndexSearch">
+            <p>
+                Search for INC#: <input type="text" name="SearchString">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Incident)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.Incident.IncidentNumber)</th>*@
+
+                    <th>@Html.DisplayNameFor(model => model.PlanDescription)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.PlanDescription)</th>*@
+
+                    <th>@Html.DisplayNameFor(model => model.PlanStatus)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.MtrCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalCost)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.WLog)</th>
+                    <th>@Html.DisplayNameFor(model => model.NABLogStatus)</th>*@
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(p => p.Incident.IncidentNumber))
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
+                        @*<td> @Html.DisplayFor(modelItem => item.DateTimeStarted)</td>*@
+
+                        <td>@Html.DisplayFor(modelItem => item.PlanDescription)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.LogNotes)</td>*@
+
+                        <td>@Html.DisplayFor(modelItem => item.PlanStatus.PlanStatusName)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>*@
+
+                        <td><a class="btn btn-sm btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Plan - Details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <a class="btn btn-sm btn-success" asp-controller="Plans" asp-action="ListPlansCreated">Back to Plans</a>
+    </div>

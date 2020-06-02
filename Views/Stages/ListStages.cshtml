@@ -1,0 +1,51 @@
+﻿@model PRONBS.Models.ViewModels.DataViewModel
+@{
+    ViewData["Title"] = "ListStages";
+}
+    <div class="badge">
+        <h1>Stages</h1>
+        <a class="btn btn-sm btn-success" asp-controller="Stages" asp-action="Create">Create new Stage</a>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Prospecting">Back to Prospecting</a>
+
+
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stages[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stages[0].Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stages[0].StageStatus)
+                    </th>
+                    
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Stages.OrderBy(s => s.Description))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StageStatus.StageStatusName)
+                        </td>
+                       
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="Sites" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Sites" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @*<a class="btn btn-sm btn-danger" asp-controller="Sites" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
