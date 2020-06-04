@@ -84,6 +84,12 @@ namespace PRONBS.Controllers
             return View();
         }
 
+        // SRHL IT LAB !
+        public IActionResult NBS()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

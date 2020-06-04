@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using PRONBS.Models.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PRONBS.Models.DataModels
+namespace PRONBS.Models.ViewModels
 {
-    public class Plan
+    public class PlanCreateViewModel
     {
-        public int Id  { get; set; }
+        
 
         //PlanDescription !
         [Display(Name = "Plan")]
@@ -59,9 +61,7 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("StageId5")]
         public Stage Stage6 { get; set; }
 
-        // Drawing UpLoad !
-
-        public string Drawing { get; set; }
+        public List<IFormFile> Drawings { get; set; }
 
         // PlanStatus !
         [Display(Name = "Status")]
@@ -70,35 +70,5 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("PlanStatusId")]
         public PlanStatus PlanStatus { get; set; }
     }
-
-    public class PlanStatus
-    {
-        public int Id { get; set; }
-
-        [Display(Name = "Status")]
-        public string PlanStatusName { get; set; }
-    }
-
-    public class Stage
-    {
-        public  int Id { get; set; }
-
-        [Display(Name = "Description")]
-        public string Description { get; set; }
-
-        //StageStatus !
-        [Display(Name = "Status")]
-        public int? StageStatusId { get; set; }
-        [Display(Name = "Status")]
-        [ForeignKey("StageStatusId")]
-        public StageStatus StageStatus { get; set; }
-    }
-
-    public class StageStatus
-    {
-        public int Id { get; set; }
-
-        [Display(Name = "Status")]
-        public string StageStatusName { get; set; }
-    }
+       
 }

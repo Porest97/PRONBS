@@ -28,12 +28,28 @@
 <div class="badge text-center">
     <h4>Quotations - ALL</h4>
     <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsCreated">List Created Quotations </a>
-            <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsSent">List Sent Quotations  </a>
-            <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsAccepted">List Accepted Quotations  </a>
-            <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsRejected">List Rejected Quotations  </a>
-        </li>
+        <div class="badge text-center">
+            <h4>Quotations - Created</h4>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsCreated">List Created Quotations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsSent">List Sent Quotations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsAccepted">List Accepted Quotations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Offers" asp-action="ListQuotationsRejected">List Rejected Quotations</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Home" asp-action="Prospecting">To Prospecting Menu</a>
+                </li>
+            </ul>
+        </div>
     </ul>
     @*<ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
