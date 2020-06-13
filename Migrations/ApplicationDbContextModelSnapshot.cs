@@ -1024,6 +1024,9 @@ namespace PRONBS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Drawing")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 

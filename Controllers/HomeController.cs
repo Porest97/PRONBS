@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PRONBS.Models;
@@ -17,7 +18,7 @@ namespace PRONBS.Controllers
         //{
         //    _logger = logger;
         //}
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -80,6 +81,12 @@ namespace PRONBS.Controllers
         }
         // SRHL IT LAB !
         public IActionResult LAB()
+        {
+            return View();
+        }
+
+        // SRHL IT LAB !
+        public IActionResult NBS()
         {
             return View();
         }

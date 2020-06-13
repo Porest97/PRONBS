@@ -59,7 +59,9 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("StageId5")]
         public Stage Stage6 { get; set; }
 
+        // Drawing UpLoad !
 
+        public string Drawing { get; set; }
 
         // PlanStatus !
         [Display(Name = "Status")]
