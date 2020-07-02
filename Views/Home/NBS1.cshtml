@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "NBS";
+}
+
+    <div class="col-sm-12 container-fluid text-center">
+        <div class="col-sm-12 text-center">
+            <h2>NBS - Netello Buisness Solution</h2>
+        </div>
+        <div class="badge text-center">
+            <h4>Incidents</h4>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidents">List Incidents Recived and Dispatched</a></li>
+            </ul>
+            @*<ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidentsP1">List P1 Incidents</a></li>
+            </ul>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidentsP2">List P2 Incidents</a></li>
+            </ul>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidentsP3">List P3 Incidents</a></li>
+            </ul>*@
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="Incidents" asp-action="ListIncidentsSolved">List Solved Incidents</a></li>
+            </ul>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="btn btn-lg btn-outline-success" asp-area="" asp-controller="MtrlLists" asp-action="ListMtrlLists">List Mtrl. Lists</a></li>
+            </ul>
+        </div>
+    </div>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.Incident>
+@{
+    ViewData["Title"] = "IndexSearch";
+}
+
+
+    <div class="badge">
+
+        <h3>Incident - Search</h3>
+
+
+
+        <form asp-controller="Incidents" asp-action="IndexSearch">
+            <p>
+                @Html.DisplayNameFor(model => model.IncidentNumber): <input type="text" name="SearchString">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+
+        <form asp-controller="Incidents" asp-action="IndexSearch">
+            <p>
+                Site @Html.DisplayNameFor(model => model.Site.SiteNumber): <input type="text" name="SearchString1">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+
+        <form asp-controller="Incidents" asp-action="IndexSearch">
+            <p>
+                @Html.DisplayNameFor(model => model.Description): <input type="text" name="SearchString2">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+        @*<div class="alert-heading">
+            <h3>Total Hours: @Model.Where(i => i.NABLogStatusId == 2).Sum(i => i.Hours)</h3>
+        </div>*@
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.IncidentNumber)</th>
+
+
+                    <th>@Html.DisplayNameFor(model => model.Site)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.IncidentPriority)</th>
+                    <th>@Html.DisplayNameFor(model => model.IncidentStatus)</th>
+
+                    @*<th>@Html.DisplayNameFor(model => model.Ethernet1LLDP)</th>
+                    <th>@Html.DisplayNameFor(model => model.LocalIP)</th>*@
+
+                    @*<th>@Html.DisplayNameFor(model => model.MtrCost)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalCost)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.WLog)</th>
+                    <th>@Html.DisplayNameFor(model => model.NABLogStatus)</th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(i => i.Received))
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.IncidentNumber)</td>
+
+                        <td> @Html.DisplayFor(modelItem => item.Site.NoSite)</td>
+                        <td> @Html.DisplayFor(modelItem => item.Description)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IncidentStatus.IncidentStatusName)</td>
+
+                        @*<td>@Html.DisplayFor(modelItem => item.Ethernet1LLDP)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LocalIP)</td>*@
+
+                        @*<td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>*@
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="NBS1">Back to Incidents</a>
+    </div>
