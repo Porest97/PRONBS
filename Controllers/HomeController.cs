@@ -23,57 +23,57 @@ namespace PRONBS.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Accounting()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Quotations()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Admin()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Incidents()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Reporting()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Links()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Mobile()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Prospecting()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Projects()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult TestModels()
         {
             return View();
         }
-
+        [Authorize]
         //Settings menu !
         public IActionResult Settings()
         {
@@ -86,7 +86,13 @@ namespace PRONBS.Controllers
         }
 
         // SRHL IT LAB !
+        [Authorize]
         public IActionResult NBS()
+        {
+            return View();
+        }
+        [Authorize]
+        public IActionResult NBS1()
         {
             return View();
         }
