@@ -26,8 +26,8 @@ namespace PRONBS.Controllers.ReportingControllers
         public async Task<IActionResult> Index(string searchString, string searchString1, string searchString2)
         {
             var nABLogs = from n in _context.NABLog
-                .Include(n=> n.Incident)
-                .Include(n => n.NABLogStatus)
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)                
                 .Include(n => n.WLog)
                 .Include(n => n.WLog.Employee)
 
@@ -37,7 +37,7 @@ namespace PRONBS.Controllers.ReportingControllers
             {
                 nABLogs = nABLogs
                 .Include(n => n.Incident)
-                .Include(n => n.NABLogStatus)
+                .Include(n => n.NABLogStatus)                
                 .Include(n => n.WLog)
                 .Include(n => n.WLog.Employee)
                 .Where(s => s.Incident.IncidentNumber.Contains(searchString));              
@@ -48,10 +48,10 @@ namespace PRONBS.Controllers.ReportingControllers
                 nABLogs = nABLogs
                 .Include(n => n.Incident)
                 .Include(n => n.Incident.FEAssigned)
-                .Include(n => n.NABLogStatus)
+                .Include(n => n.NABLogStatus)                
                 .Include(n => n.WLog)
                 .Include(n => n.WLog.Employee)
-                .Where(s => s.Incident.FEAssigned.LastName.Contains(searchString1));
+                .Where(s => s.WLog.Employee.LastName.Contains(searchString1));
 
             }
             //if (!String.IsNullOrEmpty(searchString2))

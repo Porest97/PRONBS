@@ -10,19 +10,20 @@
         <h3>NABLogs ALL - INC# - Search</h3>
 
 
-
-        <form asp-controller="NABLogs" asp-action="Index">
-            <p>
-                INC#: <input type="text" name="SearchString">
-                <input type="submit" value="Search" />
-            </p>
-        </form>
-        <form asp-controller="NABLogs" asp-action="Index">
-            <p>
-                FE Lastname: <input type="text" name="SearchString1">
-                <input type="submit" value="Search" />
-            </p>
-        </form>
+        <div class="col-sm-12 text-center">
+            <form asp-controller="NABLogs" asp-action="Index">
+                <p>
+                    INC#: <input type="text" name="SearchString">
+                    <input type="submit" value="Search" />
+                </p>
+            </form>
+            <form asp-controller="NABLogs" asp-action="Index">
+                <p>
+                    Emloyee Lastname: <input type="text" name="SearchString1">
+                    <input type="submit" value="Search" />
+                </p>
+            </form>
+        </div>
         <div class="alert-heading">
             <h3>Total Hours: @Model.Sum(i => i.Hours)</h3>
         </div>
@@ -36,36 +37,37 @@
                     <th>@Html.DisplayNameFor(model => model.LogNotes)</th>
 
                     <th>@Html.DisplayNameFor(model => model.Hours)</th>
-                    <th>@Html.DisplayNameFor(model => model.PriceHour)</th>
-
-                    <th>@Html.DisplayNameFor(model => model.MtrCost)</th>
+                    @*<th>@Html.DisplayNameFor(model => model.PriceHour)</th>
+                    <th>@Html.DisplayNameFor(model => model.MtrCost)</th>*@
                     <th>@Html.DisplayNameFor(model => model.TotalCost)</th>
 
                     <th>@Html.DisplayNameFor(model => model.WLog)</th>
                     <th>@Html.DisplayNameFor(model => model.NABLogStatus)</th>
-
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.OrderBy(nl => nl.DateTimeEnded))
                 {
-                    <tr>
-                        <td> @Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
-                        <td> @Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
+                    <td> @Html.DisplayFor(modelItem => item.DateTimeStarted)</td>
 
-                        <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LogNotes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeEnded)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LogNotes)</td>
 
-                        <td>@Html.DisplayFor(modelItem => item.Hours)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>*@
+                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
 
-                        <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>
+                    <td><a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                    <td><a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
 
-                        <td>@Html.DisplayFor(modelItem => item.WLog.WLNumber)</td>
-                        <td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>
-
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>
