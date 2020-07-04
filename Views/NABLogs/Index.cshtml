@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 
 
@@ -14,18 +15,15 @@
             <form asp-controller="NABLogs" asp-action="Index">
                 <p>
                     INC#: <input type="text" name="SearchString">
-                    <input type="submit" value="Search" />
-                </p>
-            </form>
-            <form asp-controller="NABLogs" asp-action="Index">
-                <p>
                     Emloyee Lastname: <input type="text" name="SearchString1">
+                    NABLog Status: <input type="text" name="SearchString2">
                     <input type="submit" value="Search" />
                 </p>
-            </form>
+            </form>            
         </div>
         <div class="alert-heading">
             <h3>Total Hours: @Model.Sum(i => i.Hours)</h3>
+            <h3>Total Total Cost: @Model.Sum(i => i.TotalCost) SEK</h3>
         </div>
         <table class="table table-responsive-sm table-striped">
             <thead>

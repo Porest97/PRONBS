@@ -25,6 +25,8 @@ namespace PRONBS.Controllers.ReportingControllers
         // GET: NABLogs with Inc# - search
         public async Task<IActionResult> Index(string searchString, string searchString1, string searchString2)
         {
+           
+
             var nABLogs = from n in _context.NABLog
                 .Include(n => n.Incident)
                 .Include(n => n.NABLogStatus)                
@@ -54,16 +56,16 @@ namespace PRONBS.Controllers.ReportingControllers
                 .Where(s => s.WLog.Employee.LastName.Contains(searchString1));
 
             }
-            //if (!String.IsNullOrEmpty(searchString2))
-            //{
-            //    nABLogs = nABLogs
-            //    .Include(n => n.Incident)
-            //    .Include(n => n.NABLogStatus)
-            //    .Include(n => n.WLog)
-            //    .Include(n => n.WLog.Employee)
-            //    .Where(s => s.Incident.IncidentNumber.Contains(searchString2));
+            if (!String.IsNullOrEmpty(searchString2))
+            {
+                nABLogs = nABLogs
+                .Include(n => n.Incident)
+                .Include(n => n.NABLogStatus)
+                .Include(n => n.WLog)
+                .Include(n => n.WLog.Employee)
+                .Where(s => s.NABLogStatus.NABLogStatusName.Contains(searchString2));
 
-            //}
+            }
 
 
             return View(await nABLogs.ToListAsync());
