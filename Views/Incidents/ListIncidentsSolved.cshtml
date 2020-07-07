@@ -11,8 +11,8 @@
         <form asp-controller="Incidents" asp-action="IndexSearch">
             <p>
                 @Html.DisplayNameFor(model => model.Incidents[0].IncidentNumber): <input type="text" name="SearchString">
-                Site @Html.DisplayNameFor(model => model.Incidents[0].IncidentNumber): <input type="text" name="SearchString1">
-                @Html.DisplayNameFor(model => model.Incidents[0].Site.SiteNumber): <input type="text" name="SearchString2">               
+                Site @Html.DisplayNameFor(model => model.Incidents[0].Site.SiteNumber): <input type="text" name="SearchString1">
+                @Html.DisplayNameFor(model => model.Incidents[0].Desciption): <input type="text" name="SearchString2">
                 <input type="submit" value="Search" />
             </p>
         </form>
