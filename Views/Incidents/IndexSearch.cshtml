@@ -13,23 +13,22 @@
         <form asp-controller="Incidents" asp-action="IndexSearch">
             <p>
                 @Html.DisplayNameFor(model => model.IncidentNumber): <input type="text" name="SearchString">
-                <input type="submit" value="Search" />
-            </p>
-        </form>
-
-        <form asp-controller="Incidents" asp-action="IndexSearch">
-            <p>
                 Site @Html.DisplayNameFor(model => model.Site.SiteNumber): <input type="text" name="SearchString1">
+                @Html.DisplayNameFor(model => model.Description): <input type="text" name="SearchString2">
+                @Html.DisplayNameFor(model => model.IncidentStatus.IncidentStatusName): <input type="text" name="SearchString3">
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+        <form asp-controller="Incidents" asp-action="IndexSearch">
+            <p>
+                @Html.DisplayNameFor(model => model.IncidentPriority.IncidentPriorityName): <input type="text" name="SearchString4">
+                @Html.DisplayNameFor(model => model.IncidentType.IncidentTypeName): <input type="text" name="SearchString5">
+                @Html.DisplayNameFor(model => model.PurchaseOrder.PONumber): <input type="text" name="SearchString6">
+                Creator: <input type="text" name="SearchString7">
                 <input type="submit" value="Search" />
             </p>
         </form>
 
-        <form asp-controller="Incidents" asp-action="IndexSearch">
-            <p>
-                @Html.DisplayNameFor(model => model.Description): <input type="text" name="SearchString2">
-                <input type="submit" value="Search" />
-            </p>
-        </form>
         @*<div class="alert-heading">
             <h3>Total Hours: @Model.Where(i => i.NABLogStatusId == 2).Sum(i => i.Hours)</h3>
         </div>*@
@@ -45,8 +44,8 @@
                     <th>@Html.DisplayNameFor(model => model.IncidentPriority)</th>
                     <th>@Html.DisplayNameFor(model => model.IncidentStatus)</th>
 
-                    @*<th>@Html.DisplayNameFor(model => model.Ethernet1LLDP)</th>
-                    <th>@Html.DisplayNameFor(model => model.LocalIP)</th>*@
+                    <th>@Html.DisplayNameFor(model => model.IncidentType)</th>
+                    <th>@Html.DisplayNameFor(model => model.PurchaseOrder.POHours)</th>
 
                     @*<th>@Html.DisplayNameFor(model => model.MtrCost)</th>
                     <th>@Html.DisplayNameFor(model => model.TotalCost)</th>
@@ -68,8 +67,8 @@
                         <td>@Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)</td>
                         <td>@Html.DisplayFor(modelItem => item.IncidentStatus.IncidentStatusName)</td>
 
-                        @*<td>@Html.DisplayFor(modelItem => item.Ethernet1LLDP)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LocalIP)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.IncidentType.IncidentTypeName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PurchaseOrder.POHours)</td>
 
                         @*<td>@Html.DisplayFor(modelItem => item.MtrCost)</td>
                         <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>

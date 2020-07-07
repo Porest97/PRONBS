@@ -22,7 +22,7 @@ namespace PRONBS.Controllers
             _context = context;
         }
 
-        // GET: Incidents
+        // GET: Incidents with search
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Incident
@@ -38,7 +38,11 @@ namespace PRONBS.Controllers
         }
 
         // GET: Incidents - search
-        public async Task<IActionResult> IndexSearch(string searchString, string searchString1, string searchString2)
+        public async Task<IActionResult> IndexSearch
+            (string searchString, string searchString1, 
+            string searchString2, string searchString3, 
+            string searchString4, string searchString5,
+            string searchString6, string searchString7)
         {
             var incidents = from i in _context.Incident
                 .Include(i => i.Creator)
@@ -95,6 +99,77 @@ namespace PRONBS.Controllers
                 .Include(i => i.Site)
                 .Include(i => i.MtrlList)
                 .Where(s => s.Description.Contains(searchString2));
+            }
+            if (!String.IsNullOrEmpty(searchString3))
+            {
+                incidents = incidents
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .Include(i => i.MtrlList)
+                .Where(s => s.IncidentStatus.IncidentStatusName.Contains(searchString3));
+            }
+            if (!String.IsNullOrEmpty(searchString4))
+            {
+                incidents = incidents
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .Include(i => i.MtrlList)
+                .Where(s => s.IncidentPriority.IncidentPriorityName.Contains(searchString4));
+
+            }
+            if (!String.IsNullOrEmpty(searchString5))
+            {
+                incidents = incidents
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .Include(i => i.MtrlList)
+                .Where(s => s.IncidentType.IncidentTypeName.Contains(searchString5));
+            }
+            if (!String.IsNullOrEmpty(searchString6))
+            {
+                incidents = incidents
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .Include(i => i.MtrlList)
+                .Where(s => s.PurchaseOrder.PONumber.Contains(searchString6));
+            }
+            if (!String.IsNullOrEmpty(searchString7))
+            {
+                incidents = incidents
+                .Include(i => i.Creator)
+                .Include(i => i.FEAssigned)
+                .Include(i => i.IncidentPriority)
+                .Include(i => i.IncidentStatus)
+                .Include(i => i.IncidentType)
+                .Include(i => i.PurchaseOrder)
+                .Include(i => i.Receiver)
+                .Include(i => i.Site)
+                .Include(i => i.MtrlList)
+                .Where(s => s.Creator.FirstName.Contains(searchString7));
             }
 
             return View(await incidents.ToListAsync());
