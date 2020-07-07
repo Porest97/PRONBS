@@ -15,15 +15,16 @@
             <form asp-controller="NABLogs" asp-action="Index">
                 <p>
                     INC#: <input type="text" name="SearchString">
-                    Emloyee Lastname: <input type="text" name="SearchString1">
-                    NABLog Status: <input type="text" name="SearchString2">
+                    Emloyee Firstname: <input type="text" name="SearchString1">
+                    Emloyee Lastname: <input type="text" name="SearchString2">
+                    NABLog Status: <input type="text" name="SearchString3">
                     <input type="submit" value="Search" />
                 </p>
             </form>            
         </div>
         <div class="alert-heading">
-            <h3>Total Hours: @Model.Sum(i => i.Hours)</h3>
-            <h3>Total Total Cost: @Model.Sum(i => i.TotalCost) SEK</h3>
+            <h3>Total Hours: @Model.Sum(nl => nl.Hours)</h3>
+            <h3>Total Total Cost: @Model.Sum(nl => nl.TotalCost) SEK</h3>            
         </div>
         <table class="table table-responsive-sm table-striped">
             <thead>
