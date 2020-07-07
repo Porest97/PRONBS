@@ -46,7 +46,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.OrderBy(nl => nl.DateTimeEnded))
+                @foreach (var item in Model.OrderBy(nl => nl.DateTimeEnded).Where(nl => nl.NABLogStatusId < 4))
                 {
                 <tr>
                     <td> @Html.DisplayFor(modelItem => item.Incident.IncidentNumber)</td>
