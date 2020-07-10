@@ -14,9 +14,9 @@
     <table class="table table-responsive-sm table-striped">
         <thead>
             <tr>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Incidents[0].Id)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Incidents[0].IncidentPriority)
                 </th>
@@ -46,9 +46,9 @@
             @foreach (var item in Model.Incidents.OrderBy(i => i.IncidentPriorityId))
             {
                 <tr>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Id)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.IncidentPriority.IncidentPriorityName)
                     </td>
