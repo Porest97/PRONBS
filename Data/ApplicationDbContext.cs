@@ -55,6 +55,7 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.PlanStatus> PlanStatus { get; set; }
         public DbSet<PRONBS.Models.DataModels.StageStatus> StageStatus { get; set; }
         public DbSet<PRONBS.LAB.Models.DataModels.Decimals> Decimals { get; set; }
+        public DbSet<PRONBS.Models.DataModels.Invoice> Invoice { get; set; }
        
         
     }

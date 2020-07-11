@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200710153326_InvoicesAdded")]
+    partial class InvoicesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -763,66 +765,6 @@ namespace PRONBS.Migrations
                     b.Property<string>("TermsOfDelivery")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("WorkLogId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId10")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId11")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId12")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId13")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId14")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId15")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId16")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId17")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId18")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId19")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId3")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId4")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId5")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId6")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId7")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId8")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WorkLogId9")
-                        .HasColumnType("int");
-
                     b.Property<string>("YourVATNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -833,46 +775,6 @@ namespace PRONBS.Migrations
                     b.HasIndex("CompanyId1");
 
                     b.HasIndex("PersonId");
-
-                    b.HasIndex("WorkLogId");
-
-                    b.HasIndex("WorkLogId1");
-
-                    b.HasIndex("WorkLogId10");
-
-                    b.HasIndex("WorkLogId11");
-
-                    b.HasIndex("WorkLogId12");
-
-                    b.HasIndex("WorkLogId13");
-
-                    b.HasIndex("WorkLogId14");
-
-                    b.HasIndex("WorkLogId15");
-
-                    b.HasIndex("WorkLogId16");
-
-                    b.HasIndex("WorkLogId17");
-
-                    b.HasIndex("WorkLogId18");
-
-                    b.HasIndex("WorkLogId19");
-
-                    b.HasIndex("WorkLogId2");
-
-                    b.HasIndex("WorkLogId3");
-
-                    b.HasIndex("WorkLogId4");
-
-                    b.HasIndex("WorkLogId5");
-
-                    b.HasIndex("WorkLogId6");
-
-                    b.HasIndex("WorkLogId7");
-
-                    b.HasIndex("WorkLogId8");
-
-                    b.HasIndex("WorkLogId9");
 
                     b.ToTable("Invoice");
                 });
@@ -929,10 +831,10 @@ namespace PRONBS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateTimeEnded")
+                    b.Property<DateTime>("DateTimeEnded")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateTimeStarted")
+                    b.Property<DateTime>("DateTimeStarted")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Hours")
@@ -1607,10 +1509,10 @@ namespace PRONBS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateTimeFrom")
+                    b.Property<DateTime>("DateTimeFrom")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateTimeTo")
+                    b.Property<DateTime>("DateTimeTo")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Hours")
@@ -1844,86 +1746,6 @@ namespace PRONBS.Migrations
                     b.HasOne("PRONBS.Models.DataModels.Person", "OurReference")
                         .WithMany()
                         .HasForeignKey("PersonId");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL1")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL2")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId1");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL11")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId10");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL12")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId11");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL13")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId12");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL14")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId13");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL15")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId14");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL16")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId15");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL17")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId16");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL18")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId17");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL19")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId18");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL20")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId19");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL3")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId2");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL4")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId3");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL5")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId4");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL6")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId5");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL7")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId6");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL8")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId7");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL9")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId8");
-
-                    b.HasOne("PRONBS.Models.DataModels.WLog", "WL10")
-                        .WithMany()
-                        .HasForeignKey("WorkLogId9");
                 });
 
             modelBuilder.Entity("PRONBS.Models.DataModels.NABLog", b =>

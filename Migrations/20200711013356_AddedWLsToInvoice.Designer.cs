@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200711013356_AddedWLsToInvoice")]
+    partial class AddedWLsToInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -929,10 +931,10 @@ namespace PRONBS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateTimeEnded")
+                    b.Property<DateTime>("DateTimeEnded")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateTimeStarted")
+                    b.Property<DateTime>("DateTimeStarted")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Hours")
@@ -1607,10 +1609,10 @@ namespace PRONBS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateTimeFrom")
+                    b.Property<DateTime>("DateTimeFrom")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateTimeTo")
+                    b.Property<DateTime>("DateTimeTo")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Hours")

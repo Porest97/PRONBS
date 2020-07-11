@@ -1,0 +1,230 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OCRNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermsOfDelivery)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YourVATNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OurReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentConditions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PenaltyInetrest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceFrom)
+            </th>
+            <th>
+              Worklogs #  @*@Html.DisplayNameFor(model => model.WL1)*@
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.WL2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL10)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL11)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL12)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL13)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL14)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL15)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL16)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL17)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL18)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL19)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WL20)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OCRNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsOfDelivery)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YourVATNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OurReference.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentConditions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltyInetrest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceTo.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceFrom.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WL1.WLNumber),@Html.DisplayFor(modelItem => item.WL2.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL3.WLNumber),@Html.DisplayFor(modelItem => item.WL4.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL5.WLNumber),@Html.DisplayFor(modelItem => item.WL6.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL7.WLNumber),@Html.DisplayFor(modelItem => item.WL8.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL9.WLNumber),@Html.DisplayFor(modelItem => item.WL10.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL11.WLNumber),@Html.DisplayFor(modelItem => item.WL12.WLNumber),
+                @Html.DisplayFor(modelItem => item.WL13.WLNumber), @Html.DisplayFor(modelItem => item.WL14.WLNumber)
+                @Html.DisplayFor(modelItem => item.WL15.WLNumber),@Html.DisplayFor(modelItem => item.WL16.WLNumber)
+                @Html.DisplayFor(modelItem => item.WL17.WLNumber),@Html.DisplayFor(modelItem => item.WL18.WLNumber)
+                @Html.DisplayFor(modelItem => item.WL19.WLNumber),@Html.DisplayFor(modelItem => item.WL20.WLNumber)
+            </td>
+            @*<td>
+               
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>*@
+            <td>
+                <a class="btn btn-sm btn-success" asp-controller="Invoices" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-sm btn-success" asp-controller="Invoices" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

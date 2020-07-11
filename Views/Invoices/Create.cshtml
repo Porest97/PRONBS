@@ -1,0 +1,165 @@
+﻿@model PRONBS.Models.DataModels.Invoice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InvoiceDate" class="control-label"></label>
+                <input asp-for="InvoiceDate" class="form-control" />
+                <span asp-validation-for="InvoiceDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceNumber" class="control-label"></label>
+                <input asp-for="InvoiceNumber" class="form-control" />
+                <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OCRNumber" class="control-label"></label>
+                <input asp-for="OCRNumber" class="form-control" />
+                <span asp-validation-for="OCRNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerNumber" class="control-label"></label>
+                <input asp-for="CustomerNumber" class="form-control" />
+                <span asp-validation-for="CustomerNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TermsOfDelivery" class="control-label"></label>
+                <input asp-for="TermsOfDelivery" class="form-control" />
+                <span asp-validation-for="TermsOfDelivery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YourVATNumber" class="control-label"></label>
+                <input asp-for="YourVATNumber" class="form-control" />
+                <span asp-validation-for="YourVATNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonId" class="control-label"></label>
+                <select asp-for="PersonId" class ="form-control" asp-items="ViewBag.PersonId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentConditions" class="control-label"></label>
+                <input asp-for="PaymentConditions" class="form-control" />
+                <span asp-validation-for="PaymentConditions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceDueDate" class="control-label"></label>
+                <input asp-for="InvoiceDueDate" class="form-control" />
+                <span asp-validation-for="InvoiceDueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PenaltyInetrest" class="control-label"></label>
+                <input asp-for="PenaltyInetrest" class="form-control" />
+                <span asp-validation-for="PenaltyInetrest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyId1" class="control-label"></label>
+                <select asp-for="CompanyId1" class ="form-control" asp-items="ViewBag.CompanyId1"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId" class="control-label"></label>
+                <select asp-for="WorkLogId" class ="form-control" asp-items="ViewBag.WorkLogId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId1" class="control-label"></label>
+                <select asp-for="WorkLogId1" class ="form-control" asp-items="ViewBag.WorkLogId1"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId2" class="control-label"></label>
+                <select asp-for="WorkLogId2" class ="form-control" asp-items="ViewBag.WorkLogId2"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId3" class="control-label"></label>
+                <select asp-for="WorkLogId3" class ="form-control" asp-items="ViewBag.WorkLogId3"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId4" class="control-label"></label>
+                <select asp-for="WorkLogId4" class ="form-control" asp-items="ViewBag.WorkLogId4"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId5" class="control-label"></label>
+                <select asp-for="WorkLogId5" class ="form-control" asp-items="ViewBag.WorkLogId5"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId6" class="control-label"></label>
+                <select asp-for="WorkLogId6" class ="form-control" asp-items="ViewBag.WorkLogId6"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId7" class="control-label"></label>
+                <select asp-for="WorkLogId7" class ="form-control" asp-items="ViewBag.WorkLogId7"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId8" class="control-label"></label>
+                <select asp-for="WorkLogId8" class ="form-control" asp-items="ViewBag.WorkLogId8"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId9" class="control-label"></label>
+                <select asp-for="WorkLogId9" class ="form-control" asp-items="ViewBag.WorkLogId9"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId10" class="control-label"></label>
+                <select asp-for="WorkLogId10" class ="form-control" asp-items="ViewBag.WorkLogId10"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId11" class="control-label"></label>
+                <select asp-for="WorkLogId11" class ="form-control" asp-items="ViewBag.WorkLogId11"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId12" class="control-label"></label>
+                <select asp-for="WorkLogId12" class ="form-control" asp-items="ViewBag.WorkLogId12"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId13" class="control-label"></label>
+                <select asp-for="WorkLogId13" class ="form-control" asp-items="ViewBag.WorkLogId13"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId14" class="control-label"></label>
+                <select asp-for="WorkLogId14" class ="form-control" asp-items="ViewBag.WorkLogId14"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId15" class="control-label"></label>
+                <select asp-for="WorkLogId15" class ="form-control" asp-items="ViewBag.WorkLogId15"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId16" class="control-label"></label>
+                <select asp-for="WorkLogId16" class ="form-control" asp-items="ViewBag.WorkLogId16"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId17" class="control-label"></label>
+                <select asp-for="WorkLogId17" class ="form-control" asp-items="ViewBag.WorkLogId17"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId18" class="control-label"></label>
+                <select asp-for="WorkLogId18" class ="form-control" asp-items="ViewBag.WorkLogId18"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkLogId19" class="control-label"></label>
+                <select asp-for="WorkLogId19" class ="form-control" asp-items="ViewBag.WorkLogId19"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

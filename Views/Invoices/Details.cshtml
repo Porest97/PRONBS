@@ -1,0 +1,231 @@
+﻿@model PRONBS.Models.DataModels.Invoice
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@*<h1>Details</h1>*@
+
+    <div>
+        <h6>@Html.DisplayNameFor(model => model.InvoiceNumber) @Html.DisplayFor(model => model.InvoiceNumber)</h6>
+                
+            <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InvoiceDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InvoiceNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.OCRNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OCRNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CustomerNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CustomerNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TermsOfDelivery)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TermsOfDelivery)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.YourVATNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.YourVATNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.OurReference)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OurReference.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PaymentConditions)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PaymentConditions)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InvoiceDueDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InvoiceDueDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PenaltyInetrest)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PenaltyInetrest)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InvoiceTo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InvoiceTo.CompanyName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InvoiceFrom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InvoiceFrom.CompanyName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL1)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL1.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL1.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL1.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL1.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL2)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL2.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL2.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL2.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL2.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL3)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL3.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL3.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL3.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL3.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL4)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL4.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL4.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL4.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL4.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL5)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL5.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL5.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL5.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL5.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL6)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL6.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL6.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL6.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL6.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL7)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL7.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL7.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL7.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL7.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL8)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL8.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL8.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL8.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL8.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL9)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL9.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL9.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL9.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL9.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL10)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL10.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL10.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL10.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL10.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL11)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL11.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL11.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL11.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL11.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL12)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL12.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL12.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL12.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL12.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL13)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL13.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL13.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL13.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL13.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL14)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL14.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL14.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL14.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL14.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL15)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL15.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL15.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL15.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL15.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL16)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL16.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL16.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL16.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL16.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL17)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL17.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL17.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL17.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL17.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL18)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL18.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL18.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL18.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL18.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL19)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL19.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL19.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL19.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL19.Hours)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WL20)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WL20.DateTimeTo) RSE Incident @Html.DisplayFor(model => model.WL20.Incident.IncidentNumber) Dworkin WL:@Html.DisplayFor(model => model.WL20.WLNumber)
+                Hours: @Html.DisplayFor(model => model.WL20.Hours)
+            </dd>
+        </dl>
+    </div>
+<div>
+    <a class="btn btn-sm btn-success" asp-controller="Invoices" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-sm btn-success" asp-controller="Invoices" asp-action="Index">Back to Invoices</a>
+</div>

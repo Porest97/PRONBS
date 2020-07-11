@@ -18,10 +18,10 @@ namespace PRONBS.Models.DataModels
         public decimal Hours { get; set; }
 
         [Display(Name = "DateTimeFrom")]
-        public DateTime DateTimeFrom { get; set; }
+        public DateTime? DateTimeFrom { get; set; }
 
         [Display(Name = "DateTimeTo")]
-        public DateTime DateTimeTo { get; set; }
+        public DateTime? DateTimeTo { get; set; }
 
         [Display(Name = "Subject")]
         public string Subject { get; set; }

@@ -18,10 +18,10 @@ namespace PRONBS.Models.DataModels
         public Incident Incident { get; set; }
 
         [Display(Name = "Started")]
-        public DateTime DateTimeStarted { get; set; }
+        public DateTime? DateTimeStarted { get; set; }
 
         [Display(Name = "Ended")]
-        public DateTime DateTimeEnded { get; set; }
+        public DateTime? DateTimeEnded { get; set; }
 
         [Display(Name = "Log notes")]
         public string LogNotes { get; set; }
