@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRONBS.Data;
 
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200711093430_TimeReportsAdded")]
+    partial class TimeReportsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1627,17 +1629,12 @@ namespace PRONBS.Migrations
                     b.Property<int?>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PersonId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("TimeReportName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId");
-
-                    b.HasIndex("PersonId1");
 
                     b.ToTable("TimeReport");
                 });
@@ -2162,10 +2159,6 @@ namespace PRONBS.Migrations
                     b.HasOne("PRONBS.Models.DataModels.Person", "Creator")
                         .WithMany()
                         .HasForeignKey("PersonId");
-
-                    b.HasOne("PRONBS.Models.DataModels.Person", "Employee")
-                        .WithMany()
-                        .HasForeignKey("PersonId1");
                 });
 
             modelBuilder.Entity("PRONBS.Models.DataModels.WLog", b =>

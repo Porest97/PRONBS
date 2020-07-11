@@ -1,0 +1,77 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.TimeReport>
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h6>Time Reports</h6>
+<p>
+    <a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Create">Create New Time Report</a>
+</p>
+<div class="badge">
+
+    <h3>Time Reports ALL - Employee - Search</h3>
+
+
+    <div class="col-sm-12 text-center">
+        <form asp-controller="TimeReports" asp-action="IndexSearch">
+            <p>
+                Time report: <input type="text" name="SearchString">
+                Emloyee Firstname:<input type="text" name="SearchString1">
+                Emloyee Lastname:<input type="text" name="SearchString2">
+
+
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+    </div>
+    
+    <table class="table table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TimeReportName)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+
+                <th>@Html.DisplayNameFor(model => model.DateTimeCreated)</th>
+                <th>@Html.DisplayNameFor(model => model.DateTimeFrom)</th>
+
+                <th>@Html.DisplayNameFor(model => model.DateTimeTo)</th>
+                @*<th>@Html.DisplayNameFor(model => model.PriceHour)</th>
+                    <th>@Html.DisplayNameFor(model => model.MtrCost)</th>*@
+                <th>@Html.DisplayNameFor(model => model.Creator)</th>
+
+                <th>@Html.DisplayNameFor(model => model.Employee)</th>
+                @*<th>@Html.DisplayNameFor(model => model.NABLogStatus)</th>*@
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderBy(t => t.DateTimeFrom))
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.TimeReportName)</td>
+                    <td> @Html.DisplayFor(modelItem => item.Description)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeCreated)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeFrom)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.DateTimeTo)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.PriceHour)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MtrCost)</td>*@
+                    <td>@Html.DisplayFor(modelItem => item.Creator.FullName)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.Employee.FullName)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.NABLogStatus.NABLogStatusName)</td>*@
+                    <td><a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                    <td><a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    @*<a class="btn btn-sm btn-success" asp-controller="NABLogs" asp-action="ListNABLogsCreated">Back to NABLogs</a>*@
+</div>

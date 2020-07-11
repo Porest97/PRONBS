@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.TimeReport>
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/_ViewImports.cshtml";
+}
+
+<h6>Time Reports</h6>
+
+<p>
+    <a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Create">Create New Time Report</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeReportName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Creator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeReportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creator.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FullName)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-sm btn-success" asp-controller="TimeReports" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-sm btn-danger" asp-controller="TimeReports" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
