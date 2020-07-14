@@ -58,7 +58,8 @@ namespace PRONBS.Data
         public DbSet<PRONBS.Models.DataModels.Invoice> Invoice { get; set; }
         public DbSet<PRONBS.Models.DataModels.TimeReport> TimeReport { get; set; }
         public DbSet<PRONBS.Models.DataModels.TimeLog> TimeLog { get; set; }
-       
-        
+
+        public DbSet<PRONBS.Models.DataModels.Verification> Verification { get; set; }
+
     }
 }
