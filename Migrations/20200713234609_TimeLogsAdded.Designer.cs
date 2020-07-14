@@ -10,7 +10,7 @@ using PRONBS.Data;
 namespace PRONBS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200713225801_TimeLogsAdded")]
+    [Migration("20200713234609_TimeLogsAdded")]
     partial class TimeLogsAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

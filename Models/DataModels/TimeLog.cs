@@ -61,6 +61,9 @@ namespace PRONBS.Models.DataModels
         [ForeignKey("PersonId")]
         public Person Employee { get; set; }
 
+        [Display(Name ="Payed")]
+        public bool IsPayed { get; set; }
+
     }
     public class TimeLogStatus
     {
