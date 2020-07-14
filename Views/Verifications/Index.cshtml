@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PRONBS.Models.DataModels.Verification>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="badge">
+    <h4>Verifications</h4>
+
+    <p>
+        <a class="btn btn-sm btn-outline-success" asp-controller="Verifications" asp-action="Create">Upload new Verification !</a>
+    </p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageName)
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-success" asp-controller="Verifications" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-success" asp-controller="Verifications" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="Verifications" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-sm btn-outline-success" asp-controller="TimeLogs" asp-action="IndexSearch">Back to Timelogs !</a>
+</div>
